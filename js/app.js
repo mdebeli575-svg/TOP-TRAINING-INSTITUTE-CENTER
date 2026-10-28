@@ -208,6 +208,9 @@ function pickCertStudent() {
 // PAYMENT MODAL (TeleBirr + CBE)
 // ============================================================
 function openPaymentModal(method, fromPortal, studentName, courseTitle) {
+  // Requires an account: students/users without one are prompted to log
+  // in or register, then the payment flow resumes automatically.
+  if (typeof TTIRequireAuth === 'function' && !TTIRequireAuth('pay your fees', 'pay')) return;
   TTI_FROM_PORTAL = !!fromPortal;
   document.getElementById('paymentSuccessBox').classList.add('hidden');
 
@@ -421,6 +424,9 @@ function setPaymentStatus(id, status) {
 // PUBLIC STUDENT PORTAL (theory progress + certificate)
 // ============================================================
 function loginStudentPortal() {
+  // An account is required to access classes, theory progress and the
+  // certificate. Without one, prompt to log in / register, then resume.
+  if (typeof TTIRequireAuth === 'function' && !TTIRequireAuth('access the Student Portal (theory classes & certificate)', 'portal')) return;
   var name = document.getElementById('portalName').value.trim();
   var phone = document.getElementById('portalPhone').value.replace(/[\s-]/g, '');
   var courseSel = document.getElementById('portalCourse');
@@ -553,6 +559,7 @@ function renderPortalCertificateCard(s, paid, finished) {
 }
 
 function printCertificateFromPortal() {
+  if (typeof TTIRequireAuth === 'function' && !TTIRequireAuth('print your certificate', 'cert')) return;
   var s = TTI_ACTIVE_STUDENT;
   if (!s) return;
   document.getElementById('certStudentName').value = s.name;

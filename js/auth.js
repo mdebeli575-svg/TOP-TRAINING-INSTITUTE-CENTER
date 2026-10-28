@@ -10,7 +10,7 @@
    ============================================================ */
 
 var TTI_AUTH_API = 'api/';
-var TTI_AUTH = { user: null, ready: false, online: false, pendingAdmin: false, adminThreadUid: null };
+var TTI_AUTH = { user: null, ready: false, online: false, pendingAdmin: false, adminThreadUid: null, pendingIntent: null, pendingResume: null };
 
 // ---------- tiny helpers ----------
 function ttiEsc(s) {
@@ -30,8 +30,43 @@ function ttiApi(ep, opts) {
     opts.body = JSON.stringify(opts.body);
   }
   return fetch(TTI_AUTH_API + ep, opts).then(function (r) {
-    return r.json().then(function (d) { d.__status = r.status; return d; });
+    // Read as text first so we can give a helpful message when the response
+    // isn't JSON (e.g. raw PHP source or an Apache/PHP error page).
+    return r.text().then(function (txt) {
+      var d;
+      try { d = JSON.parse(txt); }
+      catch (e) { d = { ok: false, __badResponse: true, error: ttiBadResponseMsg(txt, r.status) }; }
+      d.__status = r.status;
+      return d;
+    });
   });
+}
+
+// Turn a non-JSON API response into an actionable message. The usual cause
+// is opening the site outside Apache (Node preview on :8123 or a file://
+// path), so api/*.php is served as plain text instead of being executed.
+function ttiBadResponseMsg(txt, status) {
+  var body = String(txt || '');
+  if (/^\s*<\?php/i.test(body) || /TtiApi|__DIR__|\brequire\b.*auth\.php/i.test(body)) {
+    return 'PHP is not running for this page \u2014 the API file was returned as text. Open the site through Apache at http://localhost/TOP-TRAINING-INSTITUTE-CENTER/ (not the node preview on :8123 or a file:// path).';
+  }
+  if (/fatal error|parse error|uncaught|undefined (index|variable)|warning:/i.test(body)) {
+    var line = (body.replace(/<[^>]+>/g, ' ').match(/(fatal error|parse error|uncaught[^\n<]*|undefined[^\n<]*|warning:[^\n<]*)/i) || [''])[0];
+    return 'The PHP API returned an error: ' + line.slice(0, 200) + '. Check that MySQL is running and the \u201ctop_training_center\u201d database exists.';
+  }
+  if (/<!doctype html|<html/i.test(body)) {
+    return 'Unexpected HTML response (status ' + status + '). Double-check the URL starts with http://localhost/TOP-TRAINING-INSTITUTE-CENTER/.';
+  }
+  return 'The server returned an unexpected response (status ' + status + '). Is Apache + MySQL running and opened via http://localhost/TOP-TRAINING-INSTITUTE-CENTER/?';
+}
+
+// Message for a rejected fetch (network-level failure: file:// origin, or
+// Apache not reachable at all).
+function ttiNetErrMsg() {
+  if (window.location && window.location.protocol === 'file:') {
+    return 'You opened index.html directly (file://). Use http://localhost/TOP-TRAINING-INSTITUTE-CENTER/ so PHP can run.';
+  }
+  return 'Cannot reach the server. Make sure Apache + MySQL are running and open the site at http://localhost/TOP-TRAINING-INSTITUTE-CENTER/.';
 }
 
 function ttiShort(dt) { return (dt || '').toString().slice(0, 16); }
@@ -93,8 +128,8 @@ function ttiRenderAuthNav() {
   if (cta) cta.innerHTML =
     '<button onclick="openAccountModal()" class="border border-brand-500/50 text-brand-400 hover:bg-brand-500/10 px-3 py-2 rounded-xl text-sm font-semibold transition inline-flex items-center gap-1.5">' +
       '<i data-lucide="user-round" class="w-4 h-4"></i> ' + label + '</button>' +
-    '<button onclick="TTILogout()" class="text-slate-400 hover:text-white px-2 py-2 rounded-xl text-sm font-semibold transition" title="Sign out">' +
-      '<i data-lucide="log-out" class="w-4 h-4"></i></button>';
+    '<button onclick="TTILogout()" class="border border-slate-600 text-slate-300 hover:text-white hover:border-red-500/60 hover:bg-red-500/10 px-3 py-2 rounded-xl text-sm font-semibold transition inline-flex items-center gap-1.5" title="Sign out">' +
+      '<i data-lucide="log-out" class="w-4 h-4"></i> Logout</button>';
   if (mob) mob.innerHTML =
     '<button onclick="openAccountModal(); toggleMobileMenu();" class="w-full bg-brand-500/10 border border-brand-500/40 text-brand-400 font-bold py-2.5 rounded-xl text-center">My Account (' + label + ')</button>' +
     '<button onclick="TTILogout(); toggleMobileMenu();" class="w-full bg-slate-800 text-slate-200 font-semibold py-2.5 rounded-xl text-center">Sign out</button>';
@@ -143,8 +178,9 @@ function TTILogin(ev) {
       closeAuthModal();
       ttiRenderAuthNav();
       ttiAfterAuthSuccess();
+      ttiResumeAfterAuth();
     })
-    .catch(function () { ttiAuthError('Cannot reach the server. Is Apache + MySQL running?'); });
+    .catch(function () { ttiAuthError(ttiNetErrMsg()); });
   return false;
 }
 
@@ -168,9 +204,10 @@ function TTIRegister(ev) {
       TTI_AUTH.user = d.user;
       closeAuthModal();
       ttiRenderAuthNav();
-      openAccountModal();
+      if (TTI_AUTH.pendingResume) { ttiResumeAfterAuth(); }
+      else { openAccountModal(); }
     })
-    .catch(function () { ttiAuthError('Cannot reach the server.'); });
+    .catch(function () { ttiAuthError(ttiNetErrMsg()); });
   return false;
 }
 
@@ -214,6 +251,33 @@ function TTIAuthRequireAdmin() {
   openAuthModal('login');
   document.getElementById('authHint').innerText = 'Administrator access — sign in with the admin account.';
   return false;
+}
+
+// Gate a student-facing action (Pay Fees, Student Portal, classes,
+// certificate) behind an account. Returns true to allow, or false and
+// opens the auth modal prompting the visitor to log in / create an
+// account. When the API is offline we don't lock the static demo.
+function TTIRequireAuth(intent, resume) {
+  if (!TTI_AUTH.online) return true; // static preview: allow the demo through
+  if (TTI_AUTH.user) return true;    // signed in (student / user / admin)
+  TTI_AUTH.pendingIntent = intent || 'continue';
+  TTI_AUTH.pendingResume = resume || null; // 'pay' | 'portal' | 'cert'
+  openAuthModal('login');
+  var hint = document.getElementById('authHint');
+  if (hint) hint.innerText = 'Please log in (or create an account) to ' + TTI_AUTH.pendingIntent + '.';
+  return false;
+}
+
+// After a successful login / register, resume the action the visitor was
+// blocked from (pay fees, open portal, certificate) if one was pending.
+function ttiResumeAfterAuth() {
+  var r = TTI_AUTH.pendingResume;
+  TTI_AUTH.pendingResume = null;
+  TTI_AUTH.pendingIntent = null;
+  if (!r) return;
+  if (r === 'portal' && typeof loginStudentPortal === 'function') loginStudentPortal();
+  else if (r === 'pay' && typeof openPaymentModal === 'function') openPaymentModal();
+  else if (r === 'cert' && typeof printCertificateFromPortal === 'function') printCertificateFromPortal();
 }
 
 // ============================================================
