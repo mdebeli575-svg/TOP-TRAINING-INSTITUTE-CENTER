@@ -64,35 +64,40 @@ function ttiPopulateRegCourses() {
 // ============================================================
 // NAV RENDERING (desktop + mobile)
 // ============================================================
+// Logged-out nav markup. Rendered whether or not the PHP API is reachable,
+// so the Login / Register buttons always appear. When offline, submitting
+// the form surfaces a "cannot reach server" message instead of a crash.
+function ttiLoggedOutCta() {
+  return '<button onclick="openAuthModal(\'login\')" class="border border-slate-600 text-slate-200 hover:text-white hover:border-brand-500 px-3 py-2 rounded-xl text-sm font-semibold transition">Login</button>' +
+    '<button onclick="openAuthModal(\'register\')" class="bg-slate-800 hover:bg-slate-700 text-white px-3 py-2 rounded-xl text-sm font-semibold transition">Register</button>';
+}
+function ttiLoggedOutMobile() {
+  return '<button onclick="openAuthModal(\'login\'); toggleMobileMenu();" class="w-full bg-slate-800 text-white font-semibold py-2.5 rounded-xl text-center">Login</button>' +
+    '<button onclick="openAuthModal(\'register\'); toggleMobileMenu();" class="w-full bg-brand-500/20 border border-brand-500/40 text-brand-400 font-bold py-2.5 rounded-xl text-center">Create Account</button>';
+}
+
 function ttiRenderAuthNav() {
   var u = TTI_AUTH.user;
   var cta = document.getElementById('authNavCta');
   var mob = document.getElementById('authNavMobile');
 
-  if (!TTI_AUTH.online) {
-    if (cta) cta.innerHTML = '';
-    if (mob) mob.innerHTML = '';
+  // Not signed in (server reachable or not): always show Login / Register.
+  if (!u) {
+    if (cta) cta.innerHTML = ttiLoggedOutCta();
+    if (mob) mob.innerHTML = ttiLoggedOutMobile();
+    ttiAuthIcons();
     return;
   }
 
-  if (u) {
-    var label = ttiEsc(u.name.split(' ')[0]);
-    if (cta) cta.innerHTML =
-      '<button onclick="openAccountModal()" class="border border-brand-500/50 text-brand-400 hover:bg-brand-500/10 px-3 py-2 rounded-xl text-sm font-semibold transition inline-flex items-center gap-1.5">' +
-        '<i data-lucide="user-round" class="w-4 h-4"></i> ' + label + '</button>' +
-      '<button onclick="TTILogout()" class="text-slate-400 hover:text-white px-2 py-2 rounded-xl text-sm font-semibold transition" title="Sign out">' +
-        '<i data-lucide="log-out" class="w-4 h-4"></i></button>';
-    if (mob) mob.innerHTML =
-      '<button onclick="openAccountModal(); toggleMobileMenu();" class="w-full bg-brand-500/10 border border-brand-500/40 text-brand-400 font-bold py-2.5 rounded-xl text-center">My Account (' + label + ')</button>' +
-      '<button onclick="TTILogout(); toggleMobileMenu();" class="w-full bg-slate-800 text-slate-200 font-semibold py-2.5 rounded-xl text-center">Sign out</button>';
-  } else {
-    if (cta) cta.innerHTML =
-      '<button onclick="openAuthModal(\'login\')" class="border border-slate-600 text-slate-200 hover:text-white hover:border-brand-500 px-3 py-2 rounded-xl text-sm font-semibold transition">Login</button>' +
-      '<button onclick="openAuthModal(\'register\')" class="bg-slate-800 hover:bg-slate-700 text-white px-3 py-2 rounded-xl text-sm font-semibold transition">Register</button>';
-    if (mob) mob.innerHTML =
-      '<button onclick="openAuthModal(\'login\'); toggleMobileMenu();" class="w-full bg-slate-800 text-white font-semibold py-2.5 rounded-xl text-center">Login</button>' +
-      '<button onclick="openAuthModal(\'register\'); toggleMobileMenu();" class="w-full bg-brand-500/20 border border-brand-500/40 text-brand-400 font-bold py-2.5 rounded-xl text-center">Create Account</button>';
-  }
+  var label = ttiEsc(u.name.split(' ')[0]);
+  if (cta) cta.innerHTML =
+    '<button onclick="openAccountModal()" class="border border-brand-500/50 text-brand-400 hover:bg-brand-500/10 px-3 py-2 rounded-xl text-sm font-semibold transition inline-flex items-center gap-1.5">' +
+      '<i data-lucide="user-round" class="w-4 h-4"></i> ' + label + '</button>' +
+    '<button onclick="TTILogout()" class="text-slate-400 hover:text-white px-2 py-2 rounded-xl text-sm font-semibold transition" title="Sign out">' +
+      '<i data-lucide="log-out" class="w-4 h-4"></i></button>';
+  if (mob) mob.innerHTML =
+    '<button onclick="openAccountModal(); toggleMobileMenu();" class="w-full bg-brand-500/10 border border-brand-500/40 text-brand-400 font-bold py-2.5 rounded-xl text-center">My Account (' + label + ')</button>' +
+    '<button onclick="TTILogout(); toggleMobileMenu();" class="w-full bg-slate-800 text-slate-200 font-semibold py-2.5 rounded-xl text-center">Sign out</button>';
   ttiAuthIcons();
 }
 
