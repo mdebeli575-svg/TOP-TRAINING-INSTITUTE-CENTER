@@ -1,0 +1,2255 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TOP TRAINING Institute | Learn Skills. Build Your Career.</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#fffbe1',
+              100: '#fff3b8',
+              400: '#fbbf24',
+              500: '#f59e0b',
+              600: '#d97706',
+              700: '#b45309',
+            },
+            navy: {
+              800: '#1e293b',
+              900: '#0f172a',
+              950: '#080d1a',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+          }
+        }
+      }
+    } 
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0f172a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #f59e0b;
+    }
+    .glass-card {
+      background: rgba(30, 41, 59, 0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-card-hover {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .glass-card-hover:hover {
+      transform: translateY(-4px);
+      border-color: rgba(245, 158, 11, 0.4);
+      box-shadow: 0 12px 24px -10px rgba(245, 158, 11, 0.15);
+    }
+  </style>
+
+  <!-- Payment & Certificate Add-on Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-navy-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col selection:bg-brand-500 selection:text-navy-950">
+
+  <!-- ==================== HEADER & TOP BAR ==================== -->
+  <header class="sticky top-0 z-40 bg-navy-900/90 backdrop-blur-md border-b border-slate-800/80">
+    <!-- Top Announcement / Portal Switcher Bar -->
+    <div class="bg-navy-950/80 border-b border-slate-800 px-4 py-1.5 text-xs text-slate-400">
+      <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+        <div class="flex items-center gap-4">
+          <span class="inline-flex items-center gap-1.5 text-slate-300">
+            <i data-lucide="phone-call" class="w-3.5 h-3.5 text-brand-500"></i>
+            Direct Lines: 0991929303 / 0991929304 / 0991926707
+          </span>
+          <span class="hidden md:inline-flex items-center gap-1 text-slate-400">
+            <i data-lucide="mail" class="w-3.5 h-3.5 text-brand-500"></i>
+            toptrainings2020@gmail.com AND mesgebudebeli97@gmail.com
+          </span>
+        </div>
+        
+        <!-- MODE SWITCHER BUTTON -->
+        <div class="flex items-center gap-3">
+          <span class="text-slate-400 font-medium hidden sm:inline">System Mode:</span>
+          <button id="viewToggleBtn" onclick="toggleSystemMode()" class="inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-600 text-navy-950 font-bold px-3 py-1 rounded-full text-xs transition-all shadow-md shadow-brand-500/20 active:scale-95">
+            <i data-lucide="layout-dashboard" class="w-3.5 h-3.5"></i>
+            <span id="viewToggleText">Switch to Admin Dashboard</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo -->
+        <a href="#home" onclick="showPublicView()" class="flex items-center gap-3 group">
+          <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-brand-600 to-brand-400 p-0.5 shadow-lg shadow-brand-500/20">
+            <div class="w-full h-full bg-navy-900 rounded-[10px] flex items-center justify-center font-black text-brand-400 text-xl tracking-wider">
+              TTI
+            </div>
+          </div>
+          <div>
+            <span class="text-xl font-black tracking-tight text-white block leading-tight group-hover:text-brand-400 transition-colors">
+              TOP TRAINING
+            </span>
+            <span class="text-xs tracking-widest text-brand-500 font-semibold uppercase block">
+              INSTITUTE
+            </span>
+          </div>
+        </a>
+
+        <!-- Desktop Nav Links (Public Website View Only) -->
+        <nav id="publicNav" class="hidden lg:flex items-center space-x-1">
+          <a href="#home" class="px-3.5 py-2 rounded-lg text-sm font-medium text-slate-200 hover:text-brand-400 hover:bg-slate-800/50 transition">Home</a>
+          <a href="#courses" class="px-3.5 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-brand-400 hover:bg-slate-800/50 transition">Courses</a>
+          <a href="#why-us" class="px-3.5 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-brand-400 hover:bg-slate-800/50 transition">Why Choose Us</a>
+          <a href="#programs" class="px-3.5 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-brand-400 hover:bg-slate-800/50 transition">Featured Pathways</a>
+          <a href="#gallery" class="px-3.5 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-brand-400 hover:bg-slate-800/50 transition">Life at TTI</a>
+          <a href="#branches" class="px-3.5 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-brand-400 hover:bg-slate-800/50 transition">Branches (አድራሻችን)</a>
+          <a href="#student-portal" class="px-3.5 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-brand-400 hover:bg-slate-800/50 transition">Student Portal</a>
+          <button onclick="openPaymentModal()" class="px-3.5 py-2 rounded-lg text-sm font-semibold text-brand-400 hover:bg-brand-500/10 transition inline-flex items-center gap-1.5">
+            <i data-lucide="wallet" class="w-4 h-4"></i> Pay Fees
+          </button>
+        </nav>
+
+        <!-- Right Quick Contact CTA -->
+        <div id="publicNavCta" class="hidden sm:flex items-center gap-3">
+          <div id="authNavCta" class="flex items-center gap-2"></div>
+          <a href="#courses" class="border border-brand-500/50 text-brand-400 hover:bg-brand-500/10 px-4 py-2 rounded-xl text-sm font-semibold transition-all">
+            Browse Courses
+          </a>
+          <button onclick="openPaymentModal()" class="border border-emerald-500/50 text-emerald-400 hover:bg-emerald-500/10 px-4 py-2 rounded-xl text-sm font-semibold transition-all inline-flex items-center gap-1.5">
+            <i data-lucide="wallet" class="w-4 h-4"></i> Pay Fees
+          </button>
+          <button onclick="openEnrollmentModal()" class="bg-brand-500 hover:bg-brand-600 text-navy-950 px-4 py-2 rounded-xl text-sm font-bold shadow-md shadow-brand-500/20 transition-all hover:scale-[1.02] active:scale-95">
+            Enroll Now
+          </button>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu" class="hidden lg:hidden bg-navy-900 border-b border-slate-800 px-4 pt-2 pb-6 space-y-2">
+      <a href="#home" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-slate-800">Home</a>
+      <a href="#courses" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:bg-slate-800">Courses</a>
+      <a href="#why-us" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:bg-slate-800">Why Choose Us</a>
+      <a href="#programs" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:bg-slate-800">Featured Pathways</a>
+      <a href="#gallery" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:bg-slate-800">Life at TTI</a>
+      <a href="#branches" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:bg-slate-800">Branches (አድራሻችን)</a>
+      <a href="#student-portal" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:bg-slate-800">Student Portal (Pay & Certificate)</a>
+      <div class="pt-3 flex flex-col gap-2">
+        <button onclick="openPaymentModal(); toggleMobileMenu();" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 rounded-xl text-center">
+          Pay Fees (TeleBirr / CBE)
+        </button>
+        <button onclick="openEnrollmentModal(); toggleMobileMenu();" class="w-full bg-brand-500 text-navy-950 font-bold py-2.5 rounded-xl text-center">
+          Inquire & Enroll
+        </button>
+      </div>
+      <div id="authNavMobile" class="pt-2 flex flex-col gap-2"></div>
+    </div>
+  </header>
+
+
+  <!-- ==================== CONTAINER 1: PUBLIC FRONTEND WEBSITE ==================== -->
+  <main id="publicView" class="flex-grow space-y-20 pb-20">
+
+    <!-- HERO SECTION -->
+    <section id="home" class="relative overflow-hidden pt-12 md:pt-20 pb-16 bg-gradient-to-b from-navy-900 via-navy-950 to-navy-950 border-b border-slate-800/50">
+      <!-- Background Glow Elements -->
+      <div class="absolute -top-24 right-0 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute top-1/2 left-0 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <!-- Hero Left Column -->
+          <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+            <div class="inline-flex items-center gap-2 bg-brand-500/10 border border-brand-500/30 rounded-full px-4 py-1.5">
+              <span class="w-2 h-2 rounded-full bg-brand-400 animate-pulse"></span>
+              <span class="text-xs font-semibold uppercase tracking-wide text-brand-400">
+                Build Skills for the Future
+              </span>
+            </div>
+
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight">
+              Learn Skills.<br>
+              <span class="bg-gradient-to-r from-brand-400 via-amber-300 to-brand-500 bg-clip-text text-transparent">
+                Build Your Career.
+              </span><br>
+              Create Your Future.
+            </h1>
+
+            <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+              Join <span class="text-brand-400 font-semibold">Top Training Institute</span> to boost your career with practical, expert-led training in languages, computers, software development, creative media, business, and engineering software.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+              <button onclick="openEnrollmentModal()" class="w-full sm:w-auto bg-gradient-to-r from-brand-500 to-brand-600 hover:from-brand-400 hover:to-brand-500 text-navy-950 font-bold px-8 py-4 rounded-xl text-base shadow-lg shadow-brand-500/25 transition-all transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2">
+                Get Started Today
+                <i data-lucide="arrow-right" class="w-5 h-5"></i>
+              </button>
+              <a href="#courses" class="w-full sm:w-auto bg-slate-800/80 hover:bg-slate-800 text-white border border-slate-700 font-semibold px-7 py-4 rounded-xl text-base transition-all text-center">
+                Course Catalog
+              </a>
+            </div>
+
+            <!-- Key Feature Badges -->
+            <div class="pt-6 border-t border-slate-800/80 flex flex-wrap justify-center lg:justify-start gap-6 text-slate-400 text-xs font-medium">
+              <div class="flex items-center gap-2">
+                <i data-lucide="check-circle" class="w-4 h-4 text-brand-500"></i>
+                Certified Instructors
+              </div>
+              <div class="flex items-center gap-2">
+                <i data-lucide="check-circle" class="w-4 h-4 text-brand-500"></i>
+                Hands-on Lab Projects
+              </div>
+              <div class="flex items-center gap-2">
+                <i data-lucide="check-circle" class="w-4 h-4 text-brand-500"></i>
+                3 Physical Branches
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Right Column: Interactive Stats Cards -->
+          <div class="lg:col-span-5 grid grid-cols-2 gap-4">
+            <div class="glass-card p-6 rounded-2xl border border-slate-800 flex flex-col items-center text-center space-y-2 hover:border-brand-500/40 transition">
+              <div class="w-12 h-12 rounded-xl bg-brand-500/10 flex items-center justify-center text-brand-400 mb-2">
+                <i data-lucide="layers" class="w-6 h-6"></i>
+              </div>
+              <div class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">10+</div>
+              <div class="text-xs sm:text-sm text-slate-400 font-medium">Core Disciplines</div>
+            </div>
+
+            <div class="glass-card p-6 rounded-2xl border border-slate-800 flex flex-col items-center text-center space-y-2 hover:border-brand-500/40 transition">
+              <div class="w-12 h-12 rounded-xl bg-brand-500/10 flex items-center justify-center text-brand-400 mb-2">
+                <i data-lucide="award" class="w-6 h-6"></i>
+              </div>
+              <div class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">100%</div>
+              <div class="text-xs sm:text-sm text-slate-400 font-medium">Practical & Hands-on</div>
+            </div>
+
+            <div class="glass-card p-6 rounded-2xl border border-slate-800 flex flex-col items-center text-center space-y-2 hover:border-brand-500/40 transition">
+              <div class="w-12 h-12 rounded-xl bg-brand-500/10 flex items-center justify-center text-brand-400 mb-2">
+                <i data-lucide="users" class="w-6 h-6"></i>
+              </div>
+              <div class="text-xl sm:text-2xl font-bold text-white tracking-tight">All Levels</div>
+              <div class="text-xs sm:text-sm text-slate-400 font-medium">Beginner to Advanced</div>
+            </div>
+
+            <div class="glass-card p-6 rounded-2xl border border-slate-800 flex flex-col items-center text-center space-y-2 hover:border-brand-500/40 transition">
+              <div class="w-12 h-12 rounded-xl bg-brand-500/10 flex items-center justify-center text-brand-400 mb-2">
+                <i data-lucide="clock" class="w-6 h-6"></i>
+              </div>
+              <div class="text-xl sm:text-2xl font-bold text-white tracking-tight">Flexible</div>
+              <div class="text-xs sm:text-sm text-slate-400 font-medium">Study Options</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- COURSE CATALOG & CATEGORIES SECTION -->
+    <section id="courses" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center space-y-3 mb-12">
+        <span class="text-brand-400 text-xs font-bold uppercase tracking-widest bg-brand-500/10 px-3 py-1 rounded-full border border-brand-500/20">
+          Course Catalog
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-black text-white">Explore Our Course Categories</h2>
+        <p class="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto">
+          From language fluency and software engineering to creative media and engineering CAD, discover practical training tailored to your ambitions.
+        </p>
+        
+        <!-- Search & Quick Filter Controls -->
+        <div class="pt-6 max-w-md mx-auto relative">
+          <input type="text" id="courseSearchInput" onkeyup="filterCourses()" placeholder="Search tools or fields (e.g., Python, Revit, Photoshop)..." class="w-full bg-navy-900 border border-slate-700 rounded-xl px-4 py-3 pl-11 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 transition">
+          <i data-lucide="search" class="w-5 h-5 text-slate-500 absolute left-3.5 top-3.5"></i>
+        </div>
+      </div>
+
+      <!-- Course Cards Grid -->
+      <div id="courseCatalogGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- JS dynamically populates this or static fallback below -->
+      </div>
+    </section>
+
+
+    <!-- WHY CHOOSE US SECTION -->
+    <section id="why-us" class="bg-navy-900/60 py-16 border-y border-slate-800/80">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center space-y-3 mb-12">
+          <span class="text-brand-400 text-xs font-bold uppercase tracking-widest bg-brand-500/10 px-3 py-1 rounded-full border border-brand-500/20">
+            Why Choose Us
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-black text-white">Designed for Real-World Competence</h2>
+          <p class="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto">
+            At Top Training Institute, our educational philosophy centers on practical competence, guided mentorship, and relevant technical capabilities.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="glass-card p-6 rounded-2xl space-y-3 hover:border-brand-500/30 transition">
+            <div class="w-10 h-10 rounded-lg bg-brand-500/10 text-brand-400 flex items-center justify-center">
+              <i data-lucide="zap" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white">Practical Learning</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              We prioritize direct, actionable knowledge that you can immediately apply to real-world tasks and workplace challenges.
+            </p>
+          </div>
+
+          <div class="glass-card p-6 rounded-2xl space-y-3 hover:border-brand-500/30 transition">
+            <div class="w-10 h-10 rounded-lg bg-brand-500/10 text-brand-400 flex items-center justify-center">
+              <i data-lucide="briefcase" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white">Hands-on Projects</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Every module integrates realistic assignments and capstone projects so you graduate with a tangible portfolio of work.
+            </p>
+          </div>
+
+          <div class="glass-card p-6 rounded-2xl space-y-3 hover:border-brand-500/30 transition">
+            <div class="w-10 h-10 rounded-lg bg-brand-500/10 text-brand-400 flex items-center justify-center">
+              <i data-lucide="smile" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white">Beginner-Friendly</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Structured learning progressions guide you step-by-step from core fundamentals to confident mastery without assumptions.
+            </p>
+          </div>
+
+          <div class="glass-card p-6 rounded-2xl space-y-3 hover:border-brand-500/30 transition">
+            <div class="w-10 h-10 rounded-lg bg-brand-500/10 text-brand-400 flex items-center justify-center">
+              <i data-lucide="trending-up" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white">Career-Focused Skills</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Our curricula reflect contemporary industry demands across engineering, creative production, software, and administration.
+            </p>
+          </div>
+
+          <div class="glass-card p-6 rounded-2xl space-y-3 hover:border-brand-500/30 transition">
+            <div class="w-10 h-10 rounded-lg bg-brand-500/10 text-brand-400 flex items-center justify-center">
+              <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white">Experienced Instructors</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Learn under the guidance of active practitioners who bring practical industry context, mentorship, and feedback to the classroom.
+            </p>
+          </div>
+
+          <div class="glass-card p-6 rounded-2xl space-y-3 hover:border-brand-500/30 transition">
+            <div class="w-10 h-10 rounded-lg bg-brand-500/10 text-brand-400 flex items-center justify-center">
+              <i data-lucide="calendar" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white">Flexible Learning</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Choose from in-person, online, or hybrid schedules tailored to accommodate students, busy professionals, and career switchers.
+            </p>
+          </div>
+
+          <div class="glass-card lg:col-span-2 p-6 rounded-2xl space-y-3 hover:border-brand-500/30 transition flex flex-col justify-center">
+            <div class="w-10 h-10 rounded-lg bg-brand-500/10 text-brand-400 flex items-center justify-center">
+              <i data-lucide="cpu" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white">Modern Training Approach</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Up-to-date tools, software suites, and collaborative environments designed to prepare you for current technological workflows.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- FEATURED PROGRAMS SECTION -->
+    <section id="programs" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center space-y-3 mb-12">
+        <span class="text-brand-400 text-xs font-bold uppercase tracking-widest bg-brand-500/10 px-3 py-1 rounded-full border border-brand-500/20">
+          Featured Programs
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-black text-white">Popular Career Pathways</h2>
+        <p class="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto">
+          Explore in-demand courses curated for high practical impact across software development, creative media, engineering, and professional skills.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Featured Program 1 -->
+        <div class="glass-card rounded-2xl p-6 border border-slate-800 flex flex-col justify-between hover:border-brand-500/40 transition">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-brand-400 bg-brand-500/10 px-2.5 py-1 rounded-md">Engineering Software</span>
+              <span class="text-xs text-slate-400">All Levels</span>
+            </div>
+            <h3 class="text-xl font-bold text-white">AutoCAD & Revit for Engineering & Architectural Design</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Draft precise 2D technical drawings and construct parametric 3D Building Information Models (BIM) using AutoCAD and Revit.
+            </p>
+          </div>
+          <div class="pt-6 border-t border-slate-800/80 space-y-4">
+            <div class="flex items-center justify-between text-xs text-slate-300">
+              <span class="flex items-center gap-1.5"><i data-lucide="clock" class="w-4 h-4 text-brand-500"></i> 12 Weeks</span>
+              <span class="flex items-center gap-1.5"><i data-lucide="map-pin" class="w-4 h-4 text-brand-500"></i> In Person, Hybrid</span>
+            </div>
+            <button onclick="openEnrollmentModal('AutoCAD & Revit Engineering')" class="w-full bg-slate-800 hover:bg-brand-500 hover:text-navy-950 text-white font-semibold py-2.5 rounded-xl text-xs transition-colors">
+              Inquire & Enroll
+            </button>
+          </div>
+        </div>
+
+        <!-- Featured Program 2 -->
+        <div class="glass-card rounded-2xl p-6 border border-slate-800 flex flex-col justify-between hover:border-brand-500/40 transition">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-brand-400 bg-brand-500/10 px-2.5 py-1 rounded-md">Digital Marketing</span>
+              <span class="text-xs text-slate-400">All Levels</span>
+            </div>
+            <h3 class="text-xl font-bold text-white">Digital Marketing & Performance Growth</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Learn to build targeted digital campaigns, master SEO, manage social media channels, and interpret marketing analytics.
+            </p>
+          </div>
+          <div class="pt-6 border-t border-slate-800/80 space-y-4">
+            <div class="flex items-center justify-between text-xs text-slate-300">
+              <span class="flex items-center gap-1.5"><i data-lucide="clock" class="w-4 h-4 text-brand-500"></i> 8 Weeks</span>
+              <span class="flex items-center gap-1.5"><i data-lucide="map-pin" class="w-4 h-4 text-brand-500"></i> In Person, Online, Hybrid</span>
+            </div>
+            <button onclick="openEnrollmentModal('Digital Marketing Growth')" class="w-full bg-slate-800 hover:bg-brand-500 hover:text-navy-950 text-white font-semibold py-2.5 rounded-xl text-xs transition-colors">
+              Inquire & Enroll
+            </button>
+          </div>
+        </div>
+
+        <!-- Featured Program 3 -->
+        <div class="glass-card rounded-2xl p-6 border border-slate-800 flex flex-col justify-between hover:border-brand-500/40 transition">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-brand-400 bg-brand-500/10 px-2.5 py-1 rounded-md">Full-Stack Development</span>
+              <span class="text-xs text-slate-400">All Levels</span>
+            </div>
+            <h3 class="text-xl font-bold text-white">Full-Stack Website Development</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Build modern, responsive, database-driven web applications from frontend user interfaces to cloud-deployed backends.
+            </p>
+          </div>
+          <div class="pt-6 border-t border-slate-800/80 space-y-4">
+            <div class="flex items-center justify-between text-xs text-slate-300">
+              <span class="flex items-center gap-1.5"><i data-lucide="clock" class="w-4 h-4 text-brand-500"></i> 16 Weeks</span>
+              <span class="flex items-center gap-1.5"><i data-lucide="map-pin" class="w-4 h-4 text-brand-500"></i> In Person, Hybrid, Online</span>
+            </div>
+            <button onclick="openEnrollmentModal('Full-Stack Website Development')" class="w-full bg-slate-800 hover:bg-brand-500 hover:text-navy-950 text-white font-semibold py-2.5 rounded-xl text-xs transition-colors">
+              Inquire & Enroll
+            </button>
+          </div>
+        </div>
+
+        <!-- Featured Program 4 -->
+        <div class="glass-card rounded-2xl p-6 border border-slate-800 flex flex-col justify-between hover:border-brand-500/40 transition">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-brand-400 bg-brand-500/10 px-2.5 py-1 rounded-md">Languages</span>
+              <span class="text-xs text-slate-400">All Levels</span>
+            </div>
+            <h3 class="text-xl font-bold text-white">Professional English Communication & Workplace Fluency</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Elevate your spoken and written English fluency for professional settings, interviews, presentations, and correspondence.
+            </p>
+          </div>
+          <div class="pt-6 border-t border-slate-800/80 space-y-4">
+            <div class="flex items-center justify-between text-xs text-slate-300">
+              <span class="flex items-center gap-1.5"><i data-lucide="clock" class="w-4 h-4 text-brand-500"></i> 10 Weeks</span>
+              <span class="flex items-center gap-1.5"><i data-lucide="map-pin" class="w-4 h-4 text-brand-500"></i> In Person, Online, Hybrid</span>
+            </div>
+            <button onclick="openEnrollmentModal('Professional English Communication')" class="w-full bg-slate-800 hover:bg-brand-500 hover:text-navy-950 text-white font-semibold py-2.5 rounded-xl text-xs transition-colors">
+              Inquire & Enroll
+            </button>
+          </div>
+        </div>
+
+        <!-- Featured Program 5 -->
+        <div class="glass-card rounded-2xl p-6 border border-slate-800 flex flex-col justify-between hover:border-brand-500/40 transition">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-brand-400 bg-brand-500/10 px-2.5 py-1 rounded-md">Graphics Design</span>
+              <span class="text-xs text-slate-400">All Levels</span>
+            </div>
+            <h3 class="text-xl font-bold text-white">Professional Graphic Design & Brand Identity</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Master industry-standard design tools including Adobe Photoshop, Illustrator, and InDesign to produce compelling visual assets.
+            </p>
+          </div>
+          <div class="pt-6 border-t border-slate-800/80 space-y-4">
+            <div class="flex items-center justify-between text-xs text-slate-300">
+              <span class="flex items-center gap-1.5"><i data-lucide="clock" class="w-4 h-4 text-brand-500"></i> 12 Weeks</span>
+              <span class="flex items-center gap-1.5"><i data-lucide="map-pin" class="w-4 h-4 text-brand-500"></i> In Person, Hybrid</span>
+            </div>
+            <button onclick="openEnrollmentModal('Graphic Design & Brand')" class="w-full bg-slate-800 hover:bg-brand-500 hover:text-navy-950 text-white font-semibold py-2.5 rounded-xl text-xs transition-colors">
+              Inquire & Enroll
+            </button>
+          </div>
+        </div>
+
+        <!-- Featured Program 6 -->
+        <div class="glass-card rounded-2xl p-6 border border-slate-800 flex flex-col justify-between hover:border-brand-500/40 transition">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-brand-400 bg-brand-500/10 px-2.5 py-1 rounded-md">Programming</span>
+              <span class="text-xs text-slate-400">All Levels</span>
+            </div>
+            <h3 class="text-xl font-bold text-white">Python Programming & Software Fundamentals</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Learn core programming logic, data structures, object-oriented principles, and automation scripts using Python.
+            </p>
+          </div>
+          <div class="pt-6 border-t border-slate-800/80 space-y-4">
+            <div class="flex items-center justify-between text-xs text-slate-300">
+              <span class="flex items-center gap-1.5"><i data-lucide="clock" class="w-4 h-4 text-brand-500"></i> 10 Weeks</span>
+              <span class="flex items-center gap-1.5"><i data-lucide="map-pin" class="w-4 h-4 text-brand-500"></i> In Person, Online</span>
+            </div>
+            <button onclick="openEnrollmentModal('Python Programming Fundamentals')" class="w-full bg-slate-800 hover:bg-brand-500 hover:text-navy-950 text-white font-semibold py-2.5 rounded-xl text-xs transition-colors">
+              Inquire & Enroll
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- LIFE AT TOP TRAINING INSTITUTE (GALLERY & LIGHTBOX) -->
+    <section id="gallery" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center space-y-3 mb-10">
+        <span class="text-brand-400 text-xs font-bold uppercase tracking-widest bg-brand-500/10 px-3 py-1 rounded-full border border-brand-500/20">
+          Life at Top Training Institute
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-black text-white">Explore Our Gallery</h2>
+        <p class="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto">
+          Take a glimpse into our real graduation ceremonies, vibrant classrooms, and hands-on practical training sessions.
+        </p>
+
+        <!-- Gallery Filter Tabs -->
+        <div class="flex flex-wrap items-center justify-center gap-2 pt-4" id="galleryFilterTabs">
+          <button onclick="filterGallery('all')" class="gallery-tab-btn active px-4 py-2 rounded-xl text-xs font-semibold bg-brand-500 text-navy-950 transition">
+            All Moments (11)
+          </button>
+          <button onclick="filterGallery('graduation')" class="gallery-tab-btn px-4 py-2 rounded-xl text-xs font-semibold bg-navy-900 border border-slate-800 text-slate-300 hover:bg-slate-800 transition">
+            Graduations & Awards (6)
+          </button>
+          <button onclick="filterGallery('classroom')" class="gallery-tab-btn px-4 py-2 rounded-xl text-xs font-semibold bg-navy-900 border border-slate-800 text-slate-300 hover:bg-slate-800 transition">
+            Classrooms & Learning (3)
+          </button>
+          <button onclick="filterGallery('practical')" class="gallery-tab-btn px-4 py-2 rounded-xl text-xs font-semibold bg-navy-900 border border-slate-800 text-slate-300 hover:bg-slate-800 transition">
+            Practical & Fieldwork (2)
+          </button>
+        </div>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Javascript dynamically injects gallery cards -->
+      </div>
+    </section>
+
+
+    <!-- BRANCH LOCATIONS SECTION (አድራሻችን) -->
+    <section id="branches" class="bg-navy-900/80 py-16 border-t border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center space-y-3 mb-12">
+          <span class="text-brand-400 text-xs font-bold uppercase tracking-widest bg-brand-500/10 px-3 py-1 rounded-full border border-brand-500/20">
+            Branches (አድራሻችን)
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-black text-white">Visit Our Training Centers</h2>
+          <p class="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto">
+            We are conveniently located in 3 major hubs in Addis Ababa equipped with modern computer labs and practical studios.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          
+          <!-- Branch 1: Megenagna -->
+          <div class="glass-card rounded-2xl p-6 border border-slate-800 hover:border-brand-500/40 transition space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+              <div>
+                <span class="text-xs font-extrabold text-brand-400 uppercase tracking-wider block">Branch #1</span>
+                <h3 class="text-xl font-black text-white">Megenagna (መገናኛ)</h3>
+              </div>
+              <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center font-bold">
+                #1
+              </div>
+            </div>
+
+            <div class="space-y-3 text-sm text-slate-300">
+              <div class="flex items-start gap-3">
+                <i data-lucide="building-2" class="w-5 h-5 text-brand-500 shrink-0 mt-0.5"></i>
+                <div>
+                  <p class="font-semibold text-white">Metebaber Bldg, 2nd Fl, #14</p>
+                  <p class="text-xs text-slate-400">መተባበር ህንፃ 2ኛ ፎቅ 14</p>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <i data-lucide="phone" class="w-5 h-5 text-brand-500 shrink-0"></i>
+                <a href="tel:0991929303" class="font-bold text-brand-400 hover:underline">0991929303</a>
+              </div>
+            </div>
+
+            <div class="pt-2">
+              <a href="tel:0991929303" class="w-full inline-flex items-center justify-center gap-2 bg-navy-950 hover:bg-slate-800 border border-slate-700 text-white text-xs font-semibold py-2.5 rounded-xl transition">
+                <i data-lucide="phone-call" class="w-4 h-4 text-brand-400"></i> Call Megenagna Branch
+              </a>
+            </div>
+          </div>
+
+          <!-- Branch 2: Mexico -->
+          <div class="glass-card rounded-2xl p-6 border border-slate-800 hover:border-brand-500/40 transition space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+              <div>
+                <span class="text-xs font-extrabold text-brand-400 uppercase tracking-wider block">Branch #2</span>
+                <h3 class="text-xl font-black text-white">Mexico (ሜክሲኮ)</h3>
+              </div>
+              <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center font-bold">
+                #2
+              </div>
+            </div>
+
+            <div class="space-y-3 text-sm text-slate-300">
+              <div class="flex items-start gap-3">
+                <i data-lucide="building-2" class="w-5 h-5 text-brand-500 shrink-0 mt-0.5"></i>
+                <div>
+                  <p class="font-semibold text-white">KKare Bldg, 3rd Fl, #319</p>
+                  <p class="text-xs text-slate-400">ሜክሲኮ ኬኬር ህንፃ 3ኛ ፎቅ 319</p>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <i data-lucide="phone" class="w-5 h-5 text-brand-500 shrink-0"></i>
+                <a href="tel:0991929304" class="font-bold text-brand-400 hover:underline">0991929304</a>
+              </div>
+            </div>
+
+            <div class="pt-2">
+              <a href="tel:0991929304" class="w-full inline-flex items-center justify-center gap-2 bg-navy-950 hover:bg-slate-800 border border-slate-700 text-white text-xs font-semibold py-2.5 rounded-xl transition">
+                <i data-lucide="phone-call" class="w-4 h-4 text-brand-400"></i> Call Mexico Branch
+              </a>
+            </div>
+          </div>
+
+          <!-- Branch 3: Jemo 1 -->
+          <div class="glass-card rounded-2xl p-6 border border-slate-800 hover:border-brand-500/40 transition space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+              <div>
+                <span class="text-xs font-extrabold text-brand-400 uppercase tracking-wider block">Branch #3</span>
+                <h3 class="text-xl font-black text-white">Jemo 1 (ጀሞ 1)</h3>
+              </div>
+              <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center font-bold">
+                #3
+              </div>
+            </div>
+
+            <div class="space-y-3 text-sm text-slate-300">
+              <div class="flex items-start gap-3">
+                <i data-lucide="building-2" class="w-5 h-5 text-brand-500 shrink-0 mt-0.5"></i>
+                <div>
+                  <p class="font-semibold text-white">Kaku Center, 1st Gate, 3rd Fl</p>
+                  <p class="text-xs text-slate-400">ካኩ ቢዝነስ ሴንተር 3ኛ ፎቅ</p>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <i data-lucide="phone" class="w-5 h-5 text-brand-500 shrink-0"></i>
+                <a href="tel:0991926707" class="font-bold text-brand-400 hover:underline">0991926707</a>
+              </div>
+            </div>
+
+            <div class="pt-2">
+              <a href="tel:0991926707" class="w-full inline-flex items-center justify-center gap-2 bg-navy-950 hover:bg-slate-800 border border-slate-700 text-white text-xs font-semibold py-2.5 rounded-xl transition">
+                <i data-lucide="phone-call" class="w-4 h-4 text-brand-400"></i> Call Jemo 1 Branch
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- FINAL CTA CALLOUT -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="glass-card rounded-3xl p-8 sm:p-12 border border-brand-500/30 bg-gradient-to-r from-navy-900 via-navy-800 to-navy-900 text-center relative overflow-hidden">
+        <div class="absolute -right-12 -bottom-12 w-64 h-64 bg-brand-500/10 rounded-full blur-2xl"></div>
+        <div class="relative z-10 max-w-2xl mx-auto space-y-4">
+          <span class="text-brand-400 text-xs font-bold uppercase tracking-widest">Empowering Ambition</span>
+          <h2 class="text-3xl sm:text-4xl font-black text-white">
+            Learn Skills. Build Your Career. Create Your Future.
+          </h2>
+          <p class="text-slate-300 text-sm sm:text-base">
+            Ready to take the next step? Choose the course that matches your goals and start developing practical skills with industry-experienced mentors.
+          </p>
+          <div class="pt-4">
+            <button onclick="openEnrollmentModal()" class="bg-brand-500 hover:bg-brand-600 text-navy-950 font-bold px-8 py-4 rounded-xl shadow-lg shadow-brand-500/20 text-base transition-all transform hover:scale-105">
+              Get Started Today
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- STUDENT PORTAL: THEORY PROGRESS, FEES PAYMENT & CERTIFICATE -->
+    <section id="student-portal" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center space-y-3 mb-10">
+        <span class="text-brand-400 text-xs font-bold uppercase tracking-widest bg-brand-500/10 px-3 py-1 rounded-full border border-brand-500/20">
+          Pay Fees • Track Theory • Print Certificate
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-black text-white">Student Portal (ተማሪዎች ማዕከል)</h2>
+        <p class="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto">
+          Enter your name (and phone or course) to open your portal, view theory class progress, pay fees via TeleBirr or CBE, and print your certificate of completion.
+        </p>
+      </div>
+
+      <!-- Identify Student -->
+      <div class="glass-card rounded-2xl p-6 border border-slate-800 max-w-2xl mx-auto space-y-4">
+        <div>
+          <label class="text-xs font-medium text-slate-300 block mb-1">Full Name</label>
+          <input type="text" id="portalName" placeholder="e.g. Samuel Alemayehu" class="w-full bg-navy-950 border border-slate-700 rounded-xl p-3 text-xs text-white focus:border-brand-500 focus:outline-none">
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="text-xs font-medium text-slate-300 block mb-1">Phone (optional)</label>
+            <input type="tel" id="portalPhone" placeholder="09... / 07..." class="w-full bg-navy-950 border border-slate-700 rounded-xl p-3 text-xs text-white focus:border-brand-500 focus:outline-none">
+          </div>
+          <div>
+            <label class="text-xs font-medium text-slate-300 block mb-1">Your Course</label>
+            <select id="portalCourse" class="w-full bg-navy-950 border border-slate-700 rounded-xl p-3 text-xs text-white focus:border-brand-500 focus:outline-none">
+              <option value="Languages">Languages</option>
+              <option value="Basic Computer Skills">Basic Computer Skills &amp; MS Office</option>
+              <option value="Full-Stack Website Development">Full-Stack Website Development</option>
+              <option value="Programming Languages" selected>Programming Languages (Python, Java, C)</option>
+              <option value="Graphics Design">Graphics Design</option>
+              <option value="Video Editing">Video Editing &amp; Motion Graphics</option>
+              <option value="Digital Marketing">Digital Marketing &amp; SEO</option>
+              <option value="Photography &amp; Videography">Photography &amp; Videography</option>
+              <option value="Accounting Software">Accounting Software</option>
+              <option value="Engineering Software">Engineering Software (AutoCAD, Revit, ETABS)</option>
+            </select>
+          </div>
+        </div>
+        <button onclick="loginStudentPortal()" class="w-full bg-brand-500 hover:bg-brand-600 text-navy-950 font-bold py-3 rounded-xl text-sm transition shadow-lg shadow-brand-500/20 inline-flex items-center justify-center gap-2">
+          <i data-lucide="log-in" class="w-4 h-4"></i> Access My Portal
+        </button>
+        <p id="portalError" class="hidden text-xs text-red-400 font-semibold text-center"></p>
+      </div>
+
+      <!-- Portal Dashboard (revealed after lookup) -->
+      <div id="portalDashboard" class="hidden max-w-4xl mx-auto space-y-6 pt-6">
+
+        <!-- Payment Status Card -->
+        <div class="glass-card rounded-2xl p-6 border border-slate-800 space-y-4">
+          <div class="flex items-center justify-between flex-wrap gap-3">
+            <h3 class="text-base font-bold text-white flex items-center gap-2">
+              <i data-lucide="wallet" class="w-5 h-5 text-emerald-400"></i> Fee Payment Status
+            </h3>
+            <span id="portalPayBadge" class="text-[10px] font-bold px-2.5 py-1 rounded-full bg-red-500/10 text-red-400 border border-red-500/30">Unpaid</span>
+          </div>
+          <p id="portalStudentInfo" class="text-xs text-slate-400"></p>
+          <div id="portalPayActions" class="flex flex-wrap gap-3">
+            <button onclick="openPaymentModal(null, true)" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-5 py-2.5 rounded-xl text-xs transition inline-flex items-center gap-2">
+              <i data-lucide="smartphone" class="w-4 h-4"></i> Pay with TeleBirr
+            </button>
+            <button onclick="openPaymentModal('cbe', true)" class="bg-blue-700 hover:bg-blue-600 text-white font-bold px-5 py-2.5 rounded-xl text-xs transition inline-flex items-center gap-2">
+              <i data-lucide="landmark" class="w-4 h-4"></i> Pay with CBE (1000448547519)
+            </button>
+          </div>
+        </div>
+
+        <!-- Theory Progress + Certificate Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Theory Classes Progress -->
+          <div class="glass-card rounded-2xl p-6 border border-slate-800 space-y-4">
+            <h3 class="text-base font-bold text-white flex items-center gap-2">
+              <i data-lucide="graduation-cap" class="w-5 h-5 text-brand-400"></i> Theory Class Progress
+            </h3>
+            <div id="portalTheoryList" class="space-y-2 max-h-72 overflow-y-auto pr-1"></div>
+            <div class="pt-2 border-t border-slate-800">
+              <div class="flex justify-between text-xs font-semibold mb-1">
+                <span class="text-slate-300">Completion</span>
+                <span id="portalTheoryPercent" class="text-brand-400">0%</span>
+              </div>
+              <div class="w-full h-2 bg-navy-950 rounded-full overflow-hidden">
+                <div id="portalTheoryBar" class="h-full bg-brand-500 rounded-full transition-all duration-500" style="width: 0%"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Certificate Unlock Card -->
+          <div class="glass-card rounded-2xl p-6 border border-slate-800 space-y-4 flex flex-col justify-between">
+            <div class="space-y-3">
+              <h3 class="text-base font-bold text-white flex items-center gap-2">
+                <i data-lucide="award" class="w-5 h-5 text-brand-400"></i> Certificate of Completion
+              </h3>
+              <p id="portalCertStatus" class="text-xs text-slate-400 leading-relaxed"></p>
+              <ul id="portalCertChecklist" class="text-xs space-y-1.5"></ul>
+            </div>
+            <button id="portalCertPrintBtn" onclick="printCertificateFromPortal()" disabled class="w-full bg-slate-800 text-slate-500 font-bold py-3 rounded-xl text-sm cursor-not-allowed transition inline-flex items-center justify-center gap-2">
+              <i data-lucide="printer" class="w-4 h-4"></i> Certificate Locked
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <!-- ==================== CONTAINER 2: BACKEND DASHBOARD PORTAL ==================== -->
+  <main id="adminDashboardView" class="hidden flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    
+    <!-- Dashboard Header Header -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800 pb-6 mb-8">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="px-2.5 py-0.5 rounded bg-brand-500/20 text-brand-400 text-xs font-bold uppercase">
+            Admin Workspace
+          </span>
+          <span class="text-xs text-slate-500">v2.4 Live System</span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl font-black text-white mt-1">TOP TRAINING Institute Management System</h1>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button onclick="showPublicView()" class="inline-flex items-center gap-2 bg-navy-900 hover:bg-slate-800 border border-slate-700 text-slate-200 text-xs font-semibold px-4 py-2.5 rounded-xl transition">
+          <i data-lucide="globe" class="w-4 h-4 text-brand-400"></i> View Public Site
+        </button>
+        <button onclick="openAddCourseModal()" class="inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-600 text-navy-950 text-xs font-bold px-4 py-2.5 rounded-xl shadow transition">
+          <i data-lucide="plus-circle" class="w-4 h-4"></i> Add New Course
+        </button>
+      </div>
+    </div>
+
+    <!-- Dashboard Sidebar / Sub-view Navigation Tabs -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      
+      <!-- Sub Nav Side Menu -->
+      <div class="lg:col-span-3 space-y-2">
+        <button onclick="switchAdminTab('overview')" id="tab-overview" class="admin-nav-item active w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-white bg-brand-500/20 border border-brand-500/40 transition">
+          <span class="flex items-center gap-3"><i data-lucide="bar-chart-3" class="w-4 h-4 text-brand-400"></i> Overview & Metrics</span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-brand-400"></i>
+        </button>
+        
+        <button onclick="switchAdminTab('courses')" id="tab-courses" class="admin-nav-item w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-slate-900 transition border border-transparent">
+          <span class="flex items-center gap-3"><i data-lucide="book-open" class="w-4 h-4"></i> Course Catalog Mgr</span>
+          <span class="text-xs bg-slate-800 px-2 py-0.5 rounded text-slate-300">10</span>
+        </button>
+
+        <button onclick="switchAdminTab('leads')" id="tab-leads" class="admin-nav-item w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-slate-900 transition border border-transparent">
+          <span class="flex items-center gap-3"><i data-lucide="users" class="w-4 h-4"></i> Admissions & Leads</span>
+          <span id="leadCountBadge" class="text-xs bg-brand-500 text-navy-950 font-bold px-2 py-0.5 rounded">6</span>
+        </button>
+
+        <button onclick="switchAdminTab('branches')" id="tab-branches" class="admin-nav-item w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-slate-900 transition border border-transparent">
+          <span class="flex items-center gap-3"><i data-lucide="building" class="w-4 h-4"></i> Branch Schedules</span>
+          <span class="text-xs bg-slate-800 px-2 py-0.5 rounded text-slate-300">3</span>
+        </button>
+
+        <button onclick="switchAdminTab('certificates')" id="tab-certificates" class="admin-nav-item w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-slate-900 transition border border-transparent">
+          <span class="flex items-center gap-3"><i data-lucide="award" class="w-4 h-4"></i> Certification Desk</span>
+        </button>
+
+        <button onclick="switchAdminTab('payments')" id="tab-payments" class="admin-nav-item w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-slate-900 transition border border-transparent">
+          <span class="flex items-center gap-3"><i data-lucide="credit-card" class="w-4 h-4"></i> Payments & Settlements</span>
+          <span id="paymentCountBadge" class="text-xs bg-emerald-500 text-navy-950 font-bold px-2 py-0.5 rounded">0</span>
+        </button>
+
+        <button onclick="switchAdminTab('messages')" id="tab-messages" class="admin-nav-item w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-slate-900 transition border border-transparent">
+          <span class="flex items-center gap-3"><i data-lucide="mail" class="w-4 h-4"></i> Messages &amp; Support</span>
+          <span id="adminMsgBadge" class="text-xs bg-red-500 text-white font-bold px-2 py-0.5 rounded hidden">0</span>
+        </button>
+
+        <button onclick="switchAdminTab('settings')" id="tab-settings" class="admin-nav-item w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-slate-900 transition border border-transparent">
+          <span class="flex items-center gap-3"><i data-lucide="settings" class="w-4 h-4"></i> Site Settings</span>
+          <i data-lucide="chevron-right" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Sub Panel Content Area -->
+      <div class="lg:col-span-9 space-y-6">
+
+        <!-- SUB PANEL 1: OVERVIEW -->
+        <div id="panel-overview" class="admin-panel space-y-6">
+          
+          <!-- Key Metrics Row -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+            <div class="glass-card p-5 rounded-2xl border border-slate-800 space-y-2">
+              <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider block">Total Active Enrolled</span>
+              <div class="flex items-baseline justify-between">
+                <span class="text-2xl font-black text-white">1,248</span>
+                <span class="text-xs text-emerald-400 font-bold flex items-center gap-1"><i data-lucide="trending-up" class="w-3.5 h-3.5"></i> +14%</span>
+              </div>
+              <p class="text-xs text-slate-500">Across 3 branches in Addis</p>
+            </div>
+
+            <div class="glass-card p-5 rounded-2xl border border-slate-800 space-y-2">
+              <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider block">New Inquiries (This Month)</span>
+              <div class="flex items-baseline justify-between">
+                <span id="statNewInquiries" class="text-2xl font-black text-brand-400">186</span>
+                <span class="text-xs text-emerald-400 font-bold flex items-center gap-1"><i data-lucide="trending-up" class="w-3.5 h-3.5"></i> +22%</span>
+              </div>
+              <p class="text-xs text-slate-500">Pending review in queue</p>
+            </div>
+
+            <div class="glass-card p-5 rounded-2xl border border-slate-800 space-y-2">
+              <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider block">Graduates Certified</span>
+              <div class="flex items-baseline justify-between">
+                <span class="text-2xl font-black text-white">3,890</span>
+                <span class="text-xs text-brand-400 font-bold">Class 2025/26</span>
+              </div>
+              <p class="text-xs text-slate-500">Practical & project verified</p>
+            </div>
+
+            <div class="glass-card p-5 rounded-2xl border border-slate-800 space-y-2">
+              <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider block">Active Disciplines</span>
+              <div class="flex items-baseline justify-between">
+                <span class="text-2xl font-black text-white">10</span>
+                <span class="text-xs text-slate-400">100% Active</span>
+              </div>
+              <p class="text-xs text-slate-500">30+ core sub-courses</p>
+            </div>
+          </div>
+
+          <!-- Branch Distribution & Recent Activity -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            
+            <!-- Branch Student Breakdown -->
+            <div class="glass-card p-6 rounded-2xl border border-slate-800 space-y-4">
+              <h3 class="text-base font-bold text-white flex items-center justify-between">
+                <span>Branch Enrollment Breakdown</span>
+                <i data-lucide="pie-chart" class="w-4 h-4 text-brand-400"></i>
+              </h3>
+
+              <div class="space-y-3 pt-2">
+                <div>
+                  <div class="flex justify-between text-xs font-semibold mb-1">
+                    <span class="text-slate-300">#1 Megenagna (መገናኛ)</span>
+                    <span class="text-brand-400">485 Students (39%)</span>
+                  </div>
+                  <div class="w-full h-2 bg-navy-950 rounded-full overflow-hidden">
+                    <div class="h-full bg-brand-500 rounded-full" style="width: 39%"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between text-xs font-semibold mb-1">
+                    <span class="text-slate-300">#2 Mexico (ሜክሲኮ)</span>
+                    <span class="text-brand-400">420 Students (34%)</span>
+                  </div>
+                  <div class="w-full h-2 bg-navy-950 rounded-full overflow-hidden">
+                    <div class="h-full bg-blue-500 rounded-full" style="width: 34%"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between text-xs font-semibold mb-1">
+                    <span class="text-slate-300">#3 Jemo 1 (ጀሞ 1)</span>
+                    <span class="text-brand-400">343 Students (27%)</span>
+                  </div>
+                  <div class="w-full h-2 bg-navy-950 rounded-full overflow-hidden">
+                    <div class="h-full bg-emerald-500 rounded-full" style="width: 27%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Top Courses Demand -->
+            <div class="glass-card p-6 rounded-2xl border border-slate-800 space-y-4">
+              <h3 class="text-base font-bold text-white flex items-center justify-between">
+                <span>Top Course Demand</span>
+                <i data-lucide="flame" class="w-4 h-4 text-brand-400"></i>
+              </h3>
+
+              <ul class="space-y-3 divide-y divide-slate-800 text-xs">
+                <li class="pt-2 flex items-center justify-between">
+                  <span class="font-semibold text-slate-200">Full-Stack Website Development</span>
+                  <span class="bg-brand-500/10 text-brand-400 font-bold px-2 py-1 rounded">280 Enrolled</span>
+                </li>
+                <li class="pt-2 flex items-center justify-between">
+                  <span class="font-semibold text-slate-200">AutoCAD & Revit Engineering</span>
+                  <span class="bg-brand-500/10 text-brand-400 font-bold px-2 py-1 rounded">215 Enrolled</span>
+                </li>
+                <li class="pt-2 flex items-center justify-between">
+                  <span class="font-semibold text-slate-200">Graphics Design & Brand Identity</span>
+                  <span class="bg-brand-500/10 text-brand-400 font-bold px-2 py-1 rounded">190 Enrolled</span>
+                </li>
+                <li class="pt-2 flex items-center justify-between">
+                  <span class="font-semibold text-slate-200">Video Editing & DaVinci Resolve</span>
+                  <span class="bg-brand-500/10 text-brand-400 font-bold px-2 py-1 rounded">160 Enrolled</span>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+
+
+        <!-- SUB PANEL 2: COURSE CATALOG MANAGER -->
+        <div id="panel-courses" class="admin-panel hidden space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="text-lg font-bold text-white">Manage Course Categories & Disciplines</h3>
+            <button onclick="openAddCourseModal()" class="bg-brand-500 text-navy-950 font-bold text-xs px-3 py-2 rounded-lg">
+              + New Field
+            </button>
+          </div>
+
+          <div class="bg-navy-900 rounded-2xl border border-slate-800 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs text-slate-300">
+                <thead class="bg-navy-950 text-slate-400 font-bold uppercase tracking-wider border-b border-slate-800">
+                  <tr>
+                    <th class="p-4">Field of Study</th>
+                    <th class="p-4">Key Tools Covered</th>
+                    <th class="p-4">Status</th>
+                    <th class="p-4 text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="adminCourseTableBody" class="divide-y divide-slate-800">
+                  <!-- Dynamically populated from JS course array -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- SUB PANEL 3: ADMISSIONS & LEADS -->
+        <div id="panel-leads" class="admin-panel hidden space-y-4">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <h3 class="text-lg font-bold text-white">Student Enrollment Inquiries</h3>
+              <p class="text-xs text-slate-400">Leads captured directly from the website form</p>
+            </div>
+            
+            <div class="flex items-center gap-2">
+              <select id="branchLeadFilter" onchange="filterLeadsTable()" class="bg-navy-900 border border-slate-700 text-xs text-slate-200 rounded-lg p-2">
+                <option value="ALL">All Branches</option>
+                <option value="Megenagna">Megenagna</option>
+                <option value="Mexico">Mexico</option>
+                <option value="Jemo 1">Jemo 1</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="bg-navy-900 rounded-2xl border border-slate-800 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs text-slate-300">
+                <thead class="bg-navy-950 text-slate-400 font-bold uppercase border-b border-slate-800">
+                  <tr>
+                    <th class="p-4">Student Name</th>
+                    <th class="p-4">Contact Phone</th>
+                    <th class="p-4">Interested Course</th>
+                    <th class="p-4">Branch</th>
+                    <th class="p-4">Status</th>
+                    <th class="p-4 text-right">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="leadsTableBody" class="divide-y divide-slate-800">
+                  <!-- JS Injected Lead Rows -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- SUB PANEL 4: BRANCH SCHEDULE MANAGER -->
+        <div id="panel-branches" class="admin-panel hidden space-y-6">
+          <h3 class="text-lg font-bold text-white">Physical Classroom & Lab Schedules</h3>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="glass-card p-5 rounded-2xl border border-slate-800 space-y-3">
+              <span class="text-xs font-bold text-brand-400 uppercase">Megenagna Branch</span>
+              <h4 class="font-bold text-white">Lab A (Graphics & Full-Stack)</h4>
+              <p class="text-xs text-slate-400">Metebaber Bldg, 2nd Fl #14</p>
+              <div class="bg-navy-950 p-3 rounded-xl border border-slate-800 text-xs space-y-1">
+                <p class="text-slate-300 font-semibold">Morning Slot: 8:30 AM - 11:30 AM</p>
+                <p class="text-slate-300 font-semibold">Afternoon Slot: 2:00 PM - 5:00 PM</p>
+                <p class="text-slate-300 font-semibold">Night Slot: 5:30 PM - 8:00 PM</p>
+              </div>
+            </div>
+
+            <div class="glass-card p-5 rounded-2xl border border-slate-800 space-y-3">
+              <span class="text-xs font-bold text-brand-400 uppercase">Mexico Branch</span>
+              <h4 class="font-bold text-white">Lab B (Engineering CAD & Video)</h4>
+              <p class="text-xs text-slate-400">KKare Bldg, 3rd Fl #319</p>
+              <div class="bg-navy-950 p-3 rounded-xl border border-slate-800 text-xs space-y-1">
+                <p class="text-slate-300 font-semibold">Morning Slot: 8:30 AM - 11:30 AM</p>
+                <p class="text-slate-300 font-semibold">Afternoon Slot: 2:00 PM - 5:00 PM</p>
+                <p class="text-slate-300 font-semibold">Weekend Intensive: Sat/Sun</p>
+              </div>
+            </div>
+
+            <div class="glass-card p-5 rounded-2xl border border-slate-800 space-y-3">
+              <span class="text-xs font-bold text-brand-400 uppercase">Jemo 1 Branch</span>
+              <h4 class="font-bold text-white">Lab C (Languages & Accounting)</h4>
+              <p class="text-xs text-slate-400">Kaku Center, 3rd Fl</p>
+              <div class="bg-navy-950 p-3 rounded-xl border border-slate-800 text-xs space-y-1">
+                <p class="text-slate-300 font-semibold">Morning Slot: 9:00 AM - 12:00 PM</p>
+                <p class="text-slate-300 font-semibold">Afternoon Slot: 2:00 PM - 5:00 PM</p>
+                <p class="text-slate-300 font-semibold">Night Slot: 6:00 PM - 8:00 PM</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- SUB PANEL 5: CERTIFICATE ISSUANCE DESK -->
+        <div id="panel-certificates" class="admin-panel hidden space-y-6">
+          <div class="glass-card p-6 rounded-2xl border border-slate-800 space-y-4">
+            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+              <i data-lucide="award" class="w-5 h-5 text-brand-400"></i> Issue Graduation Certificate
+            </h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div>
+                <label class="text-xs text-slate-400 block mb-1">Pick Enrolled Student (optional)</label>
+                <select id="certStudentPick" onchange="pickCertStudent()" class="w-full bg-navy-950 border border-slate-700 rounded-xl p-3 text-xs text-white">
+                  <option value="">-- Type manually --</option>
+                </select>
+              </div>
+              <div>
+                <label class="text-xs text-slate-400 block mb-1">Student Full Name</label>
+                <input type="text" id="certStudentName" placeholder="e.g. Abebe Bikila" class="w-full bg-navy-950 border border-slate-700 rounded-xl p-3 text-xs text-white">
+              </div>
+
+              <div>
+                <label class="text-xs text-slate-400 block mb-1">Course Completed</label>
+                <input type="text" id="certCourseName" placeholder="e.g. Full-Stack Website Development" class="w-full bg-navy-950 border border-slate-700 rounded-xl p-3 text-xs text-white">
+              </div>
+            </div>
+
+            <p class="text-[11px] text-slate-500 flex items-center gap-1.5">
+              <i data-lucide="info" class="w-3.5 h-3.5 text-brand-400"></i>
+              Certificates are issued after theory classes are marked finished below and all fees are settled (TeleBirr / CBE).
+            </p>
+
+            <div class="flex flex-wrap gap-3">
+              <button onclick="generateCertificatePreview()" class="bg-brand-500 text-navy-950 font-bold px-5 py-2.5 rounded-xl text-xs">
+                Generate Printable Certificate
+              </button>
+              <button onclick="printCertificate()" class="bg-slate-800 hover:bg-slate-700 text-white font-bold px-5 py-2.5 rounded-xl text-xs inline-flex items-center gap-2">
+                <i data-lucide="printer" class="w-4 h-4 text-brand-400"></i> Print / Save PDF
+              </button>
+            </div>
+          </div>
+
+          <!-- Theory Class Completion Tracker -->
+          <div class="glass-card p-6 rounded-2xl border border-slate-800 space-y-4">
+            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+              <i data-lucide="graduation-cap" class="w-5 h-5 text-brand-400"></i> Theory Class Completion Tracker
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <select id="trackerStudentSelect" class="bg-navy-950 border border-slate-700 rounded-xl p-3 text-xs text-white">
+                <option value="">-- Select enrolled student --</option>
+              </select>
+              <input type="text" id="trackerStudentManual" placeholder="or type student name" class="bg-navy-950 border border-slate-700 rounded-xl p-3 text-xs text-white md:col-span-1">
+              <button onclick="renderTrackerModules()" class="bg-slate-800 hover:bg-slate-700 text-white font-bold px-4 py-2.5 rounded-xl text-xs">
+                Load Theory Modules
+              </button>
+            </div>
+            <div id="trackerModuleList" class="space-y-2 hidden"></div>
+            <button id="trackerFinishBtn" onclick="finishTheoryClasses()" class="hidden bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-5 py-2.5 rounded-xl text-xs inline-flex items-center gap-2">
+              <i data-lucide="check-circle-2" class="w-4 h-4"></i> Mark Theory Classes Finished
+            </button>
+          </div>
+
+          <!-- Printable Preview Box (wrapped for print isolation) -->
+          <div id="printableArea">
+          <div id="certPreviewCard" class="hidden bg-slate-100 text-navy-950 p-8 rounded-2xl border-4 border-brand-500 shadow-2xl space-y-6 text-center font-serif">
+            <div class="border-2 border-slate-800 p-8">
+              <p class="text-xs font-sans tracking-widest uppercase text-slate-600 font-bold">Official Document of Completion</p>
+              <h2 class="text-3xl font-black tracking-wider text-navy-900 my-2">TOP TRAINING INSTITUTE</h2>
+              <p class="text-xs font-sans italic text-slate-600">Learn Skills. Build Your Career. Create Your Future.</p>
+              
+              <div class="my-8 space-y-2 font-sans">
+                <p class="text-sm text-slate-700">This is to certify that</p>
+                <h3 id="certOutputName" class="text-2xl font-bold text-brand-700 underline font-serif">Abebe Bikila</h3>
+                <p class="text-sm text-slate-700">has successfully completed all theory classes and satisfied the practical capstone requirements in</p>
+                <h4 id="certOutputCourse" class="text-lg font-bold text-navy-900">Full-Stack Website Development</h4>
+              </div>
+
+              <div class="pt-8 flex justify-between items-end text-xs font-sans text-slate-600 border-t border-slate-300">
+                <div>
+                  <p class="font-bold">Date Issued: <span id="certOutputDate">Feb 2026</span></p>
+                  <p>Verify ID: <span id="certOutputId">TTI-2026-8842</span></p>
+                </div>
+                <div class="text-center">
+                  <div class="w-32 border-b border-slate-800 mb-1"></div>
+                  <p class="font-bold">Academic Director Signature</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+
+        <!-- SUB PANEL 6: PAYMENTS & SETTLEMENTS (TeleBirr + CBE) -->
+        <div id="panel-payments" class="admin-panel hidden space-y-4">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <h3 class="text-lg font-bold text-white">Payments & Settlements</h3>
+              <p class="text-xs text-slate-400">TeleBirr mobile payments and CBE bank transfers (Acc. <span class="font-mono text-brand-400">1000448547519</span>)</p>
+            </div>
+            <select id="paymentMethodFilter" onchange="renderPaymentsTable()" class="bg-navy-900 border border-slate-700 text-xs text-slate-200 rounded-lg p-2">
+              <option value="ALL">All Methods</option>
+              <option value="telebirr">TeleBirr</option>
+              <option value="cbe">CBE Bank Transfer</option>
+            </select>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="glass-card p-5 rounded-2xl border border-slate-800 space-y-1">
+              <span class="text-xs font-semibold text-slate-400 uppercase">Total Collected (ETB)</span>
+              <span id="statTotalCollected" class="text-2xl font-black text-emerald-400">0</span>
+            </div>
+            <div class="glass-card p-5 rounded-2xl border border-slate-800 space-y-1">
+              <span class="text-xs font-semibold text-slate-400 uppercase">Pending Verification</span>
+              <span id="statPendingPayments" class="text-2xl font-black text-amber-400">0</span>
+            </div>
+            <div class="glass-card p-5 rounded-2xl border border-slate-800 space-y-1">
+              <span class="text-xs font-semibold text-slate-400 uppercase">Transactions</span>
+              <span id="statPaymentCount" class="text-2xl font-black text-white">0</span>
+            </div>
+          </div>
+
+          <div class="bg-navy-900 rounded-2xl border border-slate-800 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs text-slate-300">
+                <thead class="bg-navy-950 text-slate-400 font-bold uppercase border-b border-slate-800">
+                  <tr>
+                    <th class="p-4">Student</th>
+                    <th class="p-4">Method</th>
+                    <th class="p-4">Amount (ETB)</th>
+                    <th class="p-4">Ref / Trx No.</th>
+                    <th class="p-4">Status</th>
+                    <th class="p-4 text-right">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="paymentsTableBody" class="divide-y divide-slate-800">
+                  <!-- JS Injected Payment Rows -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUB PANEL 7: MESSAGES & SUPPORT (user <-> admin inbox) -->
+        <div id="panel-messages" class="admin-panel hidden space-y-4">
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="text-lg font-bold text-white">Messages &amp; Support Inbox</h3>
+              <p class="text-xs text-slate-400">Student &amp; user enquiries. Click a conversation to read and reply.</p>
+            </div>
+            <button onclick="TTILoadAdminInbox()" class="bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold px-3 py-2 rounded-lg inline-flex items-center gap-1.5">
+              <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i> Refresh
+            </button>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div id="adminThreadList" class="bg-navy-900 rounded-2xl border border-slate-800 divide-y divide-slate-800 max-h-[28rem] overflow-y-auto">
+              <p class="p-6 text-center text-slate-500 text-xs">Loading inbox...</p>
+            </div>
+            <div id="adminThreadView" class="bg-navy-900 rounded-2xl border border-slate-800 p-4 space-y-3 max-h-[28rem] flex flex-col">
+              <p class="text-slate-500 text-xs m-auto">Select a conversation to view it.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUB PANEL 8: SITE SETTINGS -->
+        <div id="panel-settings" class="admin-panel hidden space-y-4">
+          <div>
+            <h3 class="text-lg font-bold text-white">Site Settings</h3>
+            <p class="text-xs text-slate-400">Institution details and default fees used across the portal.</p>
+          </div>
+          <div class="glass-card p-6 rounded-2xl border border-slate-800 grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl">
+            <label class="block sm:col-span-2"><span class="text-xs font-semibold text-slate-400">Institution Name</span>
+              <input id="setInstName" class="mt-1 w-full bg-navy-950 border border-slate-700 rounded-lg p-2.5 text-sm text-white"></label>
+            <label class="block"><span class="text-xs font-semibold text-slate-400">Currency</span>
+              <input id="setCurrency" class="mt-1 w-full bg-navy-950 border border-slate-700 rounded-lg p-2.5 text-sm text-white"></label>
+            <label class="block"><span class="text-xs font-semibold text-slate-400">Registration Fee (ETB)</span>
+              <input id="setRegFee" type="number" min="0" class="mt-1 w-full bg-navy-950 border border-slate-700 rounded-lg p-2.5 text-sm text-white"></label>
+            <label class="block"><span class="text-xs font-semibold text-slate-400">Certificate Fee (ETB)</span>
+              <input id="setCertFee" type="number" min="0" class="mt-1 w-full bg-navy-950 border border-slate-700 rounded-lg p-2.5 text-sm text-white"></label>
+            <div class="sm:col-span-2 flex items-center gap-3">
+              <button onclick="TTISaveSiteSettings()" class="bg-brand-500 hover:bg-brand-600 text-navy-950 font-bold text-xs px-4 py-2.5 rounded-lg">Save Settings</button>
+              <span id="adminSettingsMsg" class="text-xs font-semibold"></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="bg-navy-950 border-t border-slate-800 text-slate-400 text-xs py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      
+      <!-- Col 1: Brand Info -->
+      <div class="space-y-4">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-brand-500 text-navy-950 font-black flex items-center justify-center">
+            TTI
+          </div>
+          <span class="text-lg font-bold text-white">TOP TRAINING Institute</span>
+        </div>
+        <p class="text-slate-400 leading-relaxed">
+          Top Training Institute provides practical, hands-on, career-focused education in languages, technology, software engineering, creative media, business applications, and engineering software.
+        </p>
+        <p class="text-brand-400 font-semibold italic">
+          Learn Skills. Build Your Career. Create Your Future.
+        </p>
+      </div>
+
+      <!-- Col 2: Quick Links -->
+      <div class="space-y-3">
+        <h4 class="text-sm font-bold text-white uppercase tracking-wider">Quick Links</h4>
+        <ul class="space-y-2">
+          <li><a href="#home" class="hover:text-brand-400 transition">Home</a></li>
+          <li><a href="#about" class="hover:text-brand-400 transition">About Us</a></li>
+          <li><a href="#courses" class="hover:text-brand-400 transition">All Courses</a></li>
+          <li><a href="#why-us" class="hover:text-brand-400 transition">Why Choose Us</a></li>
+          <li><a href="#branches" class="hover:text-brand-400 transition">Contact & Inquiries</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Categories -->
+      <div class="space-y-3">
+        <h4 class="text-sm font-bold text-white uppercase tracking-wider">Featured Categories</h4>
+        <ul class="space-y-2">
+          <li><a href="#courses" class="hover:text-brand-400 transition">Languages</a></li>
+          <li><a href="#courses" class="hover:text-brand-400 transition">Basic Computer Skills</a></li>
+          <li><a href="#courses" class="hover:text-brand-400 transition">Full-Stack Website Development</a></li>
+          <li><a href="#courses" class="hover:text-brand-400 transition">Programming Languages</a></li>
+          <li><a href="#courses" class="hover:text-brand-400 transition">Graphics Design</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Branch Contacts -->
+      <div class="space-y-3">
+        <h4 class="text-sm font-bold text-white uppercase tracking-wider">Branches (አድራሻችን)</h4>
+        <div class="space-y-2 text-slate-300">
+          <p><span class="text-brand-400 font-bold">#1 Megenagna:</span> Metebaber Bldg 2nd Fl #14 (<a href="tel:0991929303" class="underline">0991929303</a>)</p>
+          <p><span class="text-brand-400 font-bold">#2 Mexico:</span> KKare Bldg 3rd Fl #319 (<a href="tel:0991929304" class="underline">0991929304</a>)</p>
+          <p><span class="text-brand-400 font-bold">#3 Jemo 1:</span> Kaku Center 3rd Fl (<a href="tel:0991926707" class="underline">0991926707</a>)</p>
+          <p class="pt-1 text-slate-400">Email: toptrainings2020@gmail.com</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 mt-8 border-t border-slate-900 text-center text-slate-500">
+      <p>© 2026 Top Training Institute. All rights reserved.</p>
+    </div>
+  </footer>
+
+
+  <!-- ==================== MODALS ==================== -->
+
+  <!-- ==================== AUTH MODAL (LOGIN / REGISTER) ==================== -->
+  <div id="authModal" class="fixed inset-0 z-[60] hidden bg-navy-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="glass-card bg-navy-900 border border-slate-700 rounded-3xl max-w-md w-full p-6 sm:p-8 relative shadow-2xl max-h-[92vh] overflow-y-auto">
+      <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+      <div class="flex items-center gap-2 mb-1">
+        <div class="w-9 h-9 rounded-lg bg-brand-500 text-navy-950 font-black flex items-center justify-center">TTI</div>
+        <h3 class="text-lg font-bold text-white">Account Access</h3>
+      </div>
+      <p id="authHint" class="text-xs text-slate-400 mb-4">Sign in or create a student / user account.</p>
+
+      <div class="flex gap-2 mb-5 bg-navy-950 rounded-xl p-1 border border-slate-800">
+        <button id="authTabLogin" onclick="switchAuthTab('login')" class="flex-1 py-2 rounded-lg text-xs font-bold bg-brand-500 text-navy-950">Login</button>
+        <button id="authTabRegister" onclick="switchAuthTab('register')" class="flex-1 py-2 rounded-lg text-xs font-bold text-slate-400">Register</button>
+      </div>
+
+      <!-- LOGIN -->
+      <form id="authLoginForm" onsubmit="return TTILogin(event)" class="space-y-3">
+        <label class="block"><span class="text-xs font-semibold text-slate-400">Email</span>
+          <input id="loginEmail" type="email" required class="mt-1 w-full bg-navy-950 border border-slate-700 rounded-xl p-3 text-sm text-white" placeholder="you@example.com"></label>
+        <label class="block"><span class="text-xs font-semibold text-slate-400">Password</span>
+          <input id="loginPassword" type="password" required class="mt-1 w-full bg-navy-950 border border-slate-700 rounded-xl p-3 text-sm text-white" placeholder="********"></label>
+        <button class="w-full bg-brand-500 hover:bg-brand-600 text-navy-950 font-bold py-3 rounded-xl text-sm">Sign In</button>
+      </form>
+
+      <!-- REGISTER -->
+      <form id="authRegisterForm" onsubmit="return TTIRegister(event)" class="space-y-3 hidden">
+        <label class="block"><span class="text-xs font-semibold text-slate-400">Full Name</span>
+          <input id="regName" required class="mt-1 w-full bg-navy-950 border border-slate-700 rounded-xl p-3 text-sm text-white"></label>
+        <label class="block"><span class="text-xs font-semibold text-slate-400">Email</span>
+          <input id="regEmail" type="email" required class="mt-1 w-full bg-navy-950 border border-slate-700 rounded-xl p-3 text-sm text-white"></label>
+        <div class="grid grid-cols-2 gap-3">
+          <label class="block"><span class="text-xs font-semibold text-slate-400">Phone</span>
+            <input id="regPhone" class="mt-1 w-full bg-navy-950 border border-slate-700 rounded-xl p-3 text-sm text-white" placeholder="09xxxxxxxx"></label>
+          <label class="block"><span class="text-xs font-semibold text-slate-400">Account Type</span>
+            <select id="regRole" class="mt-1 w-full bg-navy-950 border border-slate-700 rounded-xl p-3 text-sm text-white">
+              <option value="student">Student</option>
+              <option value="user">User</option>
+            </select></label>
+        </div>
+        <label class="block"><span class="text-xs font-semibold text-slate-400">Course</span>
+          <select id="regCourse" class="mt-1 w-full bg-navy-950 border border-slate-700 rounded-xl p-3 text-sm text-white"></select></label>
+        <label class="block"><span class="text-xs font-semibold text-slate-400">Password (min 6 chars)</span>
+          <input id="regPassword" type="password" required minlength="6" class="mt-1 w-full bg-navy-950 border border-slate-700 rounded-xl p-3 text-sm text-white"></label>
+        <button class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl text-sm">Create Account</button>
+      </form>
+
+      <p id="authError" class="text-red-400 text-xs font-semibold mt-3 hidden"></p>
+    </div>
+  </div>
+
+  <!-- ==================== ACCOUNT MODAL (MESSAGES + SETTINGS) ==================== -->
+  <div id="accountModal" class="fixed inset-0 z-[60] hidden bg-navy-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="glass-card bg-navy-900 border border-slate-700 rounded-3xl max-w-2xl w-full p-6 sm:p-8 relative shadow-2xl max-h-[92vh] overflow-y-auto">
+      <button onclick="closeAccountModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+      <div class="flex items-center justify-between mb-1">
+        <h3 class="text-lg font-bold text-white">My Account</h3>
+        <span id="accountChip" class="text-[10px] font-bold px-2.5 py-1 rounded-full bg-brand-500/15 text-brand-400 border border-brand-500/30">--</span>
+      </div>
+      <p id="accountEmail" class="text-xs text-slate-400 mb-4">--</p>
+
+      <div class="flex gap-2 mb-5 bg-navy-950 rounded-xl p-1 border border-slate-800">
+        <button id="accTabMessages" onclick="switchAccountTab('messages')" class="flex-1 py-2 rounded-lg text-xs font-bold bg-brand-500 text-navy-950">Messages</button>
+        <button id="accTabSettings" onclick="switchAccountTab('settings')" class="flex-1 py-2 rounded-lg text-xs font-bold text-slate-400">Settings</button>
+      </div>
+
+      <!-- MESSAGES -->
+      <div id="accPanelMessages" class="space-y-3">
+        <div id="accThread" class="bg-navy-950 border border-slate-800 rounded-xl p-3 space-y-2 max-h-64 overflow-y-auto">
+          <p class="text-slate-500 text-xs text-center py-6">No messages yet. Write to the admin below.</p>
+        </div>
+        <textarea id="accCompose" rows="2" class="w-full bg-navy-950 border border-slate-700 rounded-xl p-3 text-sm text-white" placeholder="Write a message to the institute (fees, schedule, certificate...)."></textarea>
+        <button onclick="TTISendMessage()" class="w-full bg-brand-500 hover:bg-brand-600 text-navy-950 font-bold py-2.5 rounded-xl text-sm inline-flex items-center justify-center gap-2"><i data-lucide="send" class="w-4 h-4"></i> Send to Admin</button>
+        <p id="accMsgStatus" class="text-xs font-semibold"></p>
+      </div>
+
+      <!-- SETTINGS -->
+      <div id="accPanelSettings" class="space-y-5 hidden">
+        <div class="space-y-3">
+          <h4 class="text-sm font-bold text-white">Profile</h4>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <label class="block"><span class="text-xs font-semibold text-slate-400">Full Name</span>
+              <input id="pfName" class="mt-1 w-full bg-navy-950 border border-slate-700 rounded-xl p-2.5 text-sm text-white"></label>
+            <label class="block"><span class="text-xs font-semibold text-slate-400">Email</span>
+              <input id="pfEmail" type="email" class="mt-1 w-full bg-navy-950 border border-slate-700 rounded-xl p-2.5 text-sm text-white"></label>
+            <label class="block"><span class="text-xs font-semibold text-slate-400">Phone</span>
+              <input id="pfPhone" class="mt-1 w-full bg-navy-950 border border-slate-700 rounded-xl p-2.5 text-sm text-white"></label>
+            <label class="block"><span class="text-xs font-semibold text-slate-400">Course</span>
+              <input id="pfCourse" class="mt-1 w-full bg-navy-950 border border-slate-700 rounded-xl p-2.5 text-sm text-white"></label>
+          </div>
+          <div class="flex items-center gap-3">
+            <button onclick="TTISaveProfile()" class="bg-brand-500 hover:bg-brand-600 text-navy-950 font-bold text-xs px-4 py-2.5 rounded-lg">Save Profile</button>
+            <span id="pfMsg" class="text-xs font-semibold"></span>
+          </div>
+        </div>
+        <div class="border-t border-slate-800 pt-4 space-y-3">
+          <h4 class="text-sm font-bold text-white">Change Password</h4>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <label class="block"><span class="text-xs font-semibold text-slate-400">Current Password</span>
+              <input id="pwCurrent" type="password" class="mt-1 w-full bg-navy-950 border border-slate-700 rounded-xl p-2.5 text-sm text-white"></label>
+            <label class="block"><span class="text-xs font-semibold text-slate-400">New Password</span>
+              <input id="pwNew" type="password" minlength="6" class="mt-1 w-full bg-navy-950 border border-slate-700 rounded-xl p-2.5 text-sm text-white"></label>
+          </div>
+          <div class="flex items-center gap-3">
+            <button onclick="TTIChangePassword()" class="bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs px-4 py-2.5 rounded-lg">Update Password</button>
+            <span id="pwMsg" class="text-xs font-semibold"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1. ENROLLMENT / INQUIRY MODAL -->
+  <div id="enrollmentModal" class="fixed inset-0 z-50 hidden bg-navy-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="glass-card bg-navy-900 border border-slate-700 rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-6 relative shadow-2xl">
+      <button onclick="closeEnrollmentModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white p-2">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div>
+        <span class="text-brand-400 text-xs font-bold uppercase tracking-wider">Start Learning</span>
+        <h3 class="text-2xl font-black text-white mt-1">Inquire & Enroll</h3>
+        <p class="text-xs text-slate-400">Fill in your details and our admission team will call you within 2 hours.</p>
+      </div>
+
+      <form id="publicEnrollForm" onsubmit="handleEnrollmentSubmit(event)" class="space-y-4">
+        <div>
+          <label class="text-xs font-medium text-slate-300 block mb-1">Full Name</label>
+          <input type="text" required id="enrollName" placeholder="Enter your full name" class="w-full bg-navy-950 border border-slate-700 rounded-xl p-3 text-xs text-white focus:border-brand-500 focus:outline-none">
+        </div>
+
+        <div>
+          <label class="text-xs font-medium text-slate-300 block mb-1">Phone Number</label>
+          <input type="tel" required id="enrollPhone" placeholder="09... / 07..." class="w-full bg-navy-950 border border-slate-700 rounded-xl p-3 text-xs text-white focus:border-brand-500 focus:outline-none">
+        </div>
+
+        <div>
+          <label class="text-xs font-medium text-slate-300 block mb-1">Select Program</label>
+          <select id="enrollCourseSelect" class="w-full bg-navy-950 border border-slate-700 rounded-xl p-3 text-xs text-white focus:border-brand-500 focus:outline-none">
+            <option value="Languages">Languages (English, Business, French, Arabic)</option>
+            <option value="Basic Computer Skills">Basic Computer Skills & MS Office</option>
+            <option value="Full-Stack Website Development">Full-Stack Website Development</option>
+            <option value="Programming Languages">Programming Languages (Python, Java, C)</option>
+            <option value="Graphics Design">Graphics Design (Photoshop, Illustrator)</option>
+            <option value="Video Editing">Video Editing & Motion Graphics</option>
+            <option value="Digital Marketing">Digital Marketing & SEO</option>
+            <option value="Photography & Videography">Photography & Videography</option>
+            <option value="Accounting Software">Accounting Software (QuickBooks, Sage, Tally)</option>
+            <option value="Engineering Software">Engineering Software (AutoCAD, Revit, ETABS)</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="text-xs font-medium text-slate-300 block mb-1">Preferred Branch Location</label>
+          <select id="enrollBranchSelect" class="w-full bg-navy-950 border border-slate-700 rounded-xl p-3 text-xs text-white focus:border-brand-500 focus:outline-none">
+            <option value="Megenagna">#1 Megenagna (መገናኛ)</option>
+            <option value="Mexico">#2 Mexico (ሜክሲኮ)</option>
+            <option value="Jemo 1">#3 Jemo 1 (ጀሞ 1)</option>
+          </select>
+        </div>
+
+        <button type="submit" class="w-full bg-brand-500 hover:bg-brand-600 text-navy-950 font-bold py-3.5 rounded-xl text-sm transition shadow-lg shadow-brand-500/20">
+          Submit Enrollment Application
+        </button>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- 2. GALLERY LIGHTBOX MODAL -->
+  <div id="lightboxModal" class="fixed inset-0 z-50 hidden bg-navy-950/95 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="max-w-4xl w-full space-y-4 relative">
+      <button onclick="closeLightbox()" class="absolute -top-10 right-0 text-white hover:text-brand-400 flex items-center gap-1 text-sm">
+        Close <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="glass-card p-4 rounded-2xl border border-slate-800 text-center space-y-3">
+        <div id="lightboxSvgContainer" class="w-full h-80 bg-navy-900 rounded-xl flex items-center justify-center border border-slate-800 overflow-hidden">
+          <!-- Rendered SVG artwork -->
+        </div>
+
+        <div class="text-left space-y-1 p-2">
+          <span id="lightboxTag" class="text-xs font-bold text-brand-400 bg-brand-500/10 px-2 py-0.5 rounded">Tag</span>
+          <h3 id="lightboxTitle" class="text-xl font-bold text-white">Title</h3>
+          <p id="lightboxDesc" class="text-xs text-slate-300">Description</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 3. PAYMENT MODAL (TELEBIRR & CBE) -->
+  <div id="paymentModal" class="fixed inset-0 z-50 hidden bg-navy-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="glass-card bg-navy-900 border border-slate-700 rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-5 relative shadow-2xl max-h-[92vh] overflow-y-auto">
+      <button onclick="closePaymentModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white p-2">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div>
+        <span class="text-emerald-400 text-xs font-bold uppercase tracking-wider">Secure Payment</span>
+        <h3 class="text-2xl font-black text-white mt-1">Pay Your Tuition Fees</h3>
+        <p class="text-xs text-slate-400">Choose TeleBirr mobile payment or Commercial Bank of Ethiopia (CBE) transfer.</p>
+      </div>
+
+      <!-- Student & Amount -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div>
+          <label class="text-xs font-medium text-slate-300 block mb-1">Student Full Name</label>
+          <input type="text" id="payStudentName" placeholder="Full name" class="w-full bg-navy-950 border border-slate-700 rounded-xl p-3 text-xs text-white focus:border-emerald-500 focus:outline-none">
+        </div>
+        <div>
+          <label class="text-xs font-medium text-slate-300 block mb-1">Amount (ETB)</label>
+          <input type="number" id="payAmount" min="1" step="1" value="500" class="w-full bg-navy-950 border border-slate-700 rounded-xl p-3 text-xs text-white focus:border-emerald-500 focus:outline-none">
+        </div>
+      </div>
+      <div>
+        <label class="text-xs font-medium text-slate-300 block mb-1">Course / Purpose of Payment</label>
+        <select id="payCourseSelect" class="w-full bg-navy-950 border border-slate-700 rounded-xl p-3 text-xs text-white focus:border-emerald-500 focus:outline-none">
+          <option>Registration Fee</option>
+          <option>Full-Stack Website Development</option>
+          <option>Basic Computer Skills & MS Office</option>
+          <option>Languages (English, Business, French, Arabic)</option>
+          <option>Graphics Design</option>
+          <option>Video Editing & Motion Graphics</option>
+          <option>Digital Marketing & SEO</option>
+          <option>Photography & Videography</option>
+          <option>Accounting Software</option>
+          <option>Engineering Software (AutoCAD, Revit, ETABS)</option>
+          <option>Programming Languages</option>
+          <option>Certificate Printing Fee</option>
+        </select>
+      </div>
+
+      <!-- Method Toggle -->
+      <div class="grid grid-cols-2 gap-3">
+        <button type="button" id="methodTelebirrBtn" onclick="selectPaymentMethod('telebirr')" class="pay-method-btn border-2 border-emerald-500 bg-emerald-500/10 text-white font-bold rounded-xl py-3 text-sm transition flex items-center justify-center gap-2">
+          <i data-lucide="smartphone" class="w-4 h-4 text-emerald-400"></i> TeleBirr
+        </button>
+        <button type="button" id="methodCbeBtn" onclick="selectPaymentMethod('cbe')" class="pay-method-btn border-2 border-slate-700 bg-navy-950 text-slate-400 font-bold rounded-xl py-3 text-sm transition flex items-center justify-center gap-2">
+          <i data-lucide="landmark" class="w-4 h-4"></i> CBE Bank
+        </button>
+      </div>
+
+      <!-- TELEBIRR PANEL -->
+      <div id="telebirrPanel" class="space-y-3 bg-navy-950 border border-emerald-500/30 rounded-2xl p-4">
+        <div class="flex items-center gap-2">
+          <div class="w-9 h-9 rounded-lg bg-emerald-500 text-navy-950 font-black flex items-center justify-center text-[10px]">TB</div>
+          <div>
+            <p class="text-sm font-bold text-white">TeleBirr Mobile Payment</p>
+            <p class="text-[11px] text-slate-400">Paybill via shortcode *844# or in-app checkout</p>
+          </div>
+        </div>
+        <div>
+          <label class="text-xs font-medium text-slate-300 block mb-1">Your TeleBirr (Ethio Telecom) Number</label>
+          <input type="tel" id="payTelebirrPhone" placeholder="09XXXXXXXX / 07XXXXXXXX" maxlength="10" class="w-full bg-navy-900 border border-slate-700 rounded-xl p-3 text-xs text-white focus:border-emerald-500 focus:outline-none">
+        </div>
+        <p class="text-[11px] text-slate-400 leading-relaxed">
+          After submitting, a <span class="text-emerald-400 font-bold">push request</span> will land on your phone dialer. Approve it with your TeleBirr PIN to complete the payment.
+        </p>
+      </div>
+
+      <!-- CBE PANEL -->
+      <div id="cbePanel" class="hidden space-y-3 bg-navy-950 border border-blue-500/30 rounded-2xl p-4">
+        <div class="flex items-center gap-2">
+          <div class="w-9 h-9 rounded-lg bg-blue-700 text-white font-black flex items-center justify-center text-[10px]">CBE</div>
+          <div>
+            <p class="text-sm font-bold text-white">Commercial Bank of Ethiopia</p>
+            <p class="text-[11px] text-slate-400">Bank transfer, CBE Birr or Telebirr-to-bank</p>
+          </div>
+        </div>
+        <div class="flex items-center justify-between bg-navy-900 border border-slate-700 rounded-xl p-3">
+          <div>
+            <p class="text-[10px] text-slate-400 uppercase font-bold">Account Number</p>
+            <p id="cbeAccountNumber" class="text-lg font-mono font-black text-blue-300 tracking-wider">1000448547519</p>
+            <p class="text-[10px] text-slate-500">Account Name: TOP TRAINING INSTITUTE</p>
+          </div>
+          <button type="button" onclick="copyCbeAccount()" class="bg-slate-800 hover:bg-blue-700 hover:text-white text-slate-300 px-3 py-2 rounded-lg text-[10px] font-bold transition inline-flex items-center gap-1.5">
+            <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy
+          </button>
+        </div>
+        <div>
+          <label class="text-xs font-medium text-slate-300 block mb-1">CBE Transaction Reference No.</label>
+          <input type="text" id="payCbeTrxRef" placeholder="e.g. trx from your CBE receipt / SMS" class="w-full bg-navy-900 border border-slate-700 rounded-xl p-3 text-xs text-white focus:border-blue-500 focus:outline-none">
+        </div>
+        <p class="text-[11px] text-slate-400 leading-relaxed">
+          Transfer to the account above, then enter the transaction reference here. Our finance team verifies it against the bank statement.
+        </p>
+      </div>
+
+      <button id="paymentSubmitBtn" onclick="submitPayment()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 rounded-xl text-sm transition shadow-lg shadow-emerald-600/20 inline-flex items-center justify-center gap-2">
+        <i data-lucide="shield-check" class="w-4 h-4"></i> Confirm & Submit Payment
+      </button>
+
+      <!-- Payment Success State -->
+      <div id="paymentSuccessBox" class="hidden bg-emerald-500/10 border border-emerald-500/40 rounded-2xl p-4 space-y-1 text-center">
+        <i data-lucide="check-circle-2" class="w-8 h-8 text-emerald-400 mx-auto"></i>
+        <p class="text-sm font-bold text-white">Payment Submitted!</p>
+        <p id="paymentReceiptInfo" class="text-[11px] text-slate-300"></p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- JavaScript Application Logic -->
+  <script>
+    // ================= DATA STRUCTURES ================= //
+
+    // 10 Fields of Study Data
+    const courseCategories = [
+      {
+        id: 'languages',
+        title: 'Languages',
+        desc: 'Master modern spoken and written languages for career, travel, and academic success.',
+        tools: ['English Communication', 'Business English', 'French', 'Arabic'],
+        extraCount: 2,
+        icon: 'languages'
+      },
+      {
+        id: 'computer-basics',
+        title: 'Basic Computer Skills',
+        desc: 'Build essential computer literacy and master productivity software like Microsoft Office.',
+        tools: ['Computer Fundamentals', 'Windows', 'File Management', 'Microsoft Word'],
+        extraCount: 3,
+        icon: 'laptop'
+      },
+      {
+        id: 'fullstack-dev',
+        title: 'Full-Stack Website Development',
+        desc: 'Develop responsive modern websites and web applications from frontend to backend.',
+        tools: ['HTML & CSS', 'JavaScript', 'TypeScript', 'React'],
+        extraCount: 6,
+        icon: 'code'
+      },
+      {
+        id: 'programming',
+        title: 'Programming Languages',
+        desc: 'Learn high-demand programming languages for software engineering, data, and automation.',
+        tools: ['Python', 'JavaScript', 'Java', 'C'],
+        extraCount: 4,
+        icon: 'terminal'
+      },
+      {
+        id: 'graphics',
+        title: 'Graphics Design',
+        desc: 'Create stunning brand identities, vector graphics, print layouts, and digital visuals.',
+        tools: ['Design Fundamentals', 'Adobe Photoshop', 'Adobe Illustrator', 'Adobe InDesign'],
+        extraCount: 2,
+        icon: 'palette'
+      },
+      {
+        id: 'video-editing',
+        title: 'Video Editing',
+        desc: 'Edit professional videos, craft visual effects, color grade, and master post-production.',
+        tools: ['Adobe Premiere Pro', 'DaVinci Resolve', 'After Effects', 'Color Correction'],
+        extraCount: 2,
+        icon: 'video'
+      },
+      {
+        id: 'digital-marketing',
+        title: 'Digital Marketing',
+        desc: 'Grow brands and reach audiences through search engines, social media, and digital advertising.',
+        tools: ['Social Media Marketing', 'Content Marketing', 'SEO', 'Online Advertising'],
+        extraCount: 2,
+        icon: 'megaphone'
+      },
+      {
+        id: 'photography',
+        title: 'Photography & Videography',
+        desc: 'Master camera controls, lighting setups, cinematic composition, and production workflows.',
+        tools: ['Camera Operation', 'Lighting & Composition', 'Cinematography', 'Audio Capture'],
+        extraCount: 2,
+        icon: 'camera'
+      },
+      {
+        id: 'accounting',
+        title: 'Accounting Software',
+        desc: 'Streamline bookkeeping, financial reporting, payroll, and tax preparation with industry tools.',
+        tools: ['QuickBooks', 'Peachtree / Sage', 'Tally', 'Advanced Excel for Accounting'],
+        extraCount: 2,
+        icon: 'calculator'
+      },
+      {
+        id: 'engineering',
+        title: 'Engineering Software',
+        desc: 'Master computer-aided design, 3D modeling, structural analysis, and project planning.',
+        tools: ['AutoCAD', 'Revit', 'Civil 3D', 'ETABS'],
+        extraCount: 4,
+        icon: 'compass'
+      }
+    ];
+
+    // Gallery Items Prompt Data
+    const galleryItems = [
+      {
+        id: 1,
+        category: 'graduation',
+        title: 'Class of 2025 Media & Video Graduates',
+        desc: 'Celebrating milestone achievements, graduation sashes, and career readiness with instructors.',
+        badge: 'Graduation',
+        accent: '#f59e0b'
+      },
+      {
+        id: 2,
+        category: 'graduation',
+        title: 'Fullstack Development Graduation',
+        desc: 'Director congratulating and presenting the official diploma to a certified software developer.',
+        badge: 'Graduation',
+        accent: '#3b82f6'
+      },
+      {
+        id: 3,
+        category: 'graduation',
+        title: 'Certificate of Completion Award',
+        desc: 'Honoring academic excellence and successful practical project defense with trainers.',
+        badge: 'Graduation',
+        accent: '#10b981'
+      },
+      {
+        id: 4,
+        category: 'practical',
+        title: 'Hands-on Night Cinematography Lab',
+        desc: 'Students mastering camera exposures, low-light apertures, and tripod stability in the field.',
+        badge: 'Practical',
+        accent: '#8b5cf6'
+      },
+      {
+        id: 5,
+        category: 'practical',
+        title: 'Field Work & Applied Practical Skills',
+        desc: 'Trainees equipped with branded safety vests during immersive real-world technical fieldwork.',
+        badge: 'Practical',
+        accent: '#ec4899'
+      },
+      {
+        id: 6,
+        category: 'classroom',
+        title: 'Modern Interactive Classroom',
+        desc: 'Focused learning atmosphere with instructor guidance, theoretical foundations, and active discussions.',
+        badge: 'Classroom',
+        accent: '#06b6d4'
+      },
+      {
+        id: 7,
+        category: 'classroom',
+        title: 'In-Depth Study & Evaluations',
+        desc: 'Rigorous curriculum and regular practical assessments ensuring every student masters their craft.',
+        badge: 'Classroom',
+        accent: '#f97316'
+      },
+      {
+        id: 8,
+        category: 'graduation',
+        title: 'Professional Camera & Lighting',
+        desc: 'Graduate showcasing hands-on mastery with industry-grade DSLR and studio lighting equipment.',
+        badge: 'Graduation',
+        accent: '#84cc16'
+      },
+      {
+        id: 9,
+        category: 'graduation',
+        title: 'Cinematography & Video Editing Honors',
+        desc: 'Mentors and successful trainee celebrating creative storytelling and technical editing milestones.',
+        badge: 'Graduation',
+        accent: '#a855f7'
+      },
+      {
+        id: 10,
+        category: 'graduation',
+        title: 'Media Production Certification',
+        desc: 'Proud graduate honored for completing comprehensive video, audio, and visual production training.',
+        badge: 'Graduation',
+        accent: '#14b8a6'
+      },
+      {
+        id: 11,
+        category: 'classroom',
+        title: 'Multimedia Digital Curriculum',
+        desc: 'Structured video lessons and digital guides spanning graphic design, frontend/backend, and camera work.',
+        badge: 'Classroom',
+        accent: '#3b82f6'
+      }
+    ];
+
+    // Reactive Lead Store
+    let leadsData = [
+      { id: 101, name: 'Tewodros Kassahun', phone: '0911223344', course: 'Full-Stack Website Development', branch: 'Megenagna', status: 'Pending' },
+      { id: 102, name: 'Bethlehem Hailu', phone: '0922334455', course: 'AutoCAD & Revit Engineering', branch: 'Mexico', status: 'Contacted' },
+      { id: 103, name: 'Samuel Alemayehu', phone: '0933445566', course: 'Digital Marketing', branch: 'Jemo 1', status: 'Enrolled' },
+      { id: 104, name: 'Helina Tadesse', phone: '0944556677', course: 'Graphics Design', branch: 'Megenagna', status: 'Pending' },
+      { id: 105, name: 'Yonas Kebede', phone: '0955667788', course: 'Python Programming', branch: 'Mexico', status: 'Contacted' },
+      { id: 106, name: 'Meron Bekele', phone: '0966778899', course: 'Languages', branch: 'Jemo 1', status: 'Pending' }
+    ];
+
+    // ================= INITIALIZATION ================= //
+
+    window.onload = function() {
+      renderCourseCatalog(courseCategories);
+      renderGalleryGrid(galleryItems);
+      renderAdminCourseTable();
+      renderLeadsTable();
+      lucide.createIcons();
+      // Payment & Certificate add-on initialization (js/app.js)
+      if (typeof TTIInit === 'function') TTIInit();
+      // Auth / accounts / messaging / settings (js/auth.js)
+      if (typeof TTIAuthInit === 'function') TTIAuthInit();
+    };
+
+    // ================= NAVIGATION & VIEW SWITCHING ================= //
+
+    function toggleSystemMode() {
+      const publicView = document.getElementById('publicView');
+      const adminView = document.getElementById('adminDashboardView');
+      const toggleText = document.getElementById('viewToggleText');
+      const publicNav = document.getElementById('publicNav');
+      const publicNavCta = document.getElementById('publicNavCta');
+
+      if (publicView.classList.contains('hidden')) {
+        showPublicView();
+      } else {
+        // Admin dashboard is access-controlled: require an admin session.
+        if (typeof TTIAuthRequireAdmin === 'function' && !TTIAuthRequireAdmin()) { return; }
+        publicView.classList.add('hidden');
+        adminView.classList.remove('hidden');
+        toggleText.innerText = 'Switch to Public Website';
+        if(publicNav) publicNav.classList.add('hidden');
+        if(publicNavCta) publicNavCta.classList.add('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function showPublicView() {
+      const publicView = document.getElementById('publicView');
+      const adminView = document.getElementById('adminDashboardView');
+      const toggleText = document.getElementById('viewToggleText');
+      const publicNav = document.getElementById('publicNav');
+      const publicNavCta = document.getElementById('publicNavCta');
+
+      publicView.classList.remove('hidden');
+      adminView.classList.add('hidden');
+      toggleText.innerText = 'Switch to Admin Dashboard';
+      if(publicNav) publicNav.classList.remove('hidden');
+      if(publicNavCta) publicNavCta.classList.remove('hidden');
+    }
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');
+    }
+
+    // ================= COURSE CATALOG FUNCTIONS ================= //
+
+    function renderCourseCatalog(courses) {
+      const container = document.getElementById('courseCatalogGrid');
+      container.innerHTML = '';
+
+      courses.forEach(c => {
+        const toolsList = c.tools.map(t => `<li class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-400 shrink-0"></i> ${t}</li>`).join('');
+
+        const cardHTML = `
+          <div class="glass-card glass-card-hover rounded-2xl p-6 border border-slate-800 flex flex-col justify-between">
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <span class="text-[10px] font-extrabold uppercase tracking-wider text-brand-400 bg-brand-500/10 px-2.5 py-1 rounded-md border border-brand-500/20">
+                  Field of Study
+                </span>
+                <div class="w-8 h-8 rounded-lg bg-navy-950 text-brand-400 flex items-center justify-center border border-slate-800">
+                  <i data-lucide="${c.icon || 'book-open'}" class="w-4 h-4"></i>
+                </div>
+              </div>
+
+              <h3 class="text-xl font-bold text-white">${c.title}</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">${c.desc}</p>
+
+              <div class="pt-2">
+                <span class="text-xs font-semibold text-slate-400 block mb-2">Key Topics & Tools:</span>
+                <ul class="text-xs text-slate-300 space-y-1.5">
+                  ${toolsList}
+                  <li class="text-brand-400 font-semibold text-[11px] pt-1">+${c.extraCount} more topics</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="pt-6 mt-6 border-t border-slate-800/80">
+              <button onclick="openEnrollmentModal('${c.title}')" class="w-full bg-slate-800 hover:bg-brand-500 hover:text-navy-950 text-white font-bold py-2.5 rounded-xl text-xs transition-colors flex items-center justify-center gap-2">
+                Explore Courses <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+        `;
+        container.insertAdjacentHTML('beforeend', cardHTML);
+      });
+      lucide.createIcons();
+    }
+
+    function filterCourses() {
+      const query = document.getElementById('courseSearchInput').value.toLowerCase();
+      const filtered = courseCategories.filter(c => {
+        return c.title.toLowerCase().includes(query) || 
+               c.desc.toLowerCase().includes(query) ||
+               c.tools.some(t => t.toLowerCase().includes(query));
+      });
+      renderCourseCatalog(filtered);
+    }
+
+    // ================= GALLERY LIGHTBOX FUNCTIONS ================= //
+
+    function renderGalleryGrid(items) {
+      const container = document.getElementById('galleryGrid');
+      container.innerHTML = '';
+
+      items.forEach(item => {
+        const cardHTML = `
+          <div class="gallery-card glass-card rounded-2xl overflow-hidden border border-slate-800 hover:border-brand-500/40 transition group cursor-pointer" onclick="openLightbox(${item.id})">
+            <div class="h-44 bg-navy-900 relative flex items-center justify-center border-b border-slate-800 p-4">
+              <!-- Inline Decorative SVG Illustration -->
+              <svg class="w-20 h-20 text-slate-700 group-hover:scale-110 group-hover:text-brand-400 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+              </svg>
+              <span class="absolute top-3 left-3 text-[10px] font-bold text-brand-400 bg-navy-950/90 border border-brand-500/30 px-2.5 py-0.5 rounded-full uppercase">
+                ${item.badge}
+              </span>
+            </div>
+
+            <div class="p-5 space-y-2">
+              <h4 class="text-base font-bold text-white group-hover:text-brand-400 transition-colors">${item.title}</h4>
+              <p class="text-xs text-slate-400 line-clamp-2">${item.desc}</p>
+            </div>
+          </div>
+        `;
+        container.insertAdjacentHTML('beforeend', cardHTML);
+      });
+    }
+
+    function filterGallery(category) {
+      // Update Tab CSS
+      const buttons = document.querySelectorAll('#galleryFilterTabs button');
+      buttons.forEach(btn => {
+        btn.classList.remove('bg-brand-500', 'text-navy-950');
+        btn.classList.add('bg-navy-900', 'text-slate-300');
+      });
+      event.target.classList.remove('bg-navy-900', 'text-slate-300');
+      event.target.classList.add('bg-brand-500', 'text-navy-950');
+
+      if (category === 'all') {
+        renderGalleryGrid(galleryItems);
+      } else {
+        const filtered = galleryItems.filter(i => i.category === category);
+        renderGalleryGrid(filtered);
+      }
+    }
+
+    function openLightbox(id) {
+      const item = galleryItems.find(i => i.id === id);
+      if(!item) return;
+
+      document.getElementById('lightboxTitle').innerText = item.title;
+      document.getElementById('lightboxDesc').innerText = item.desc;
+      document.getElementById('lightboxTag').innerText = item.badge;
+
+      const svgBox = document.getElementById('lightboxSvgContainer');
+      svgBox.innerHTML = `
+        <div class="text-center space-y-3">
+          <div class="w-20 h-20 mx-auto rounded-2xl bg-brand-500/10 flex items-center justify-center text-brand-400 border border-brand-500/30">
+            <i data-lucide="award" class="w-10 h-10"></i>
+          </div>
+          <p class="text-xs text-slate-400 max-w-sm px-4">Interactive high-resolution practical moment from Top Training Institute photo archives.</p>
+        </div>
+      `;
+
+      document.getElementById('lightboxModal').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightboxModal').classList.add('hidden');
+    }
+
+    // ================= ENROLLMENT MODAL & SUBMISSION ================= //
+
+    function openEnrollmentModal(courseTitle) {
+      if(courseTitle) {
+        const select = document.getElementById('enrollCourseSelect');
+        for (let i = 0; i < select.options.length; i++) {
+          if (select.options[i].text.includes(courseTitle) || select.options[i].value.includes(courseTitle)) {
+            select.selectedIndex = i;
+            break;
+          }
+        }
+      }
+      document.getElementById('enrollmentModal').classList.remove('hidden');
+    }
+
+    function closeEnrollmentModal() {
+      document.getElementById('enrollmentModal').classList.add('hidden');
+    }
+
+    function handleEnrollmentSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('enrollName').value;
+      const phone = document.getElementById('enrollPhone').value;
+      const course = document.getElementById('enrollCourseSelect').value;
+      const branch = document.getElementById('enrollBranchSelect').value;
+
+      // Add to leads array for Admin Dashboard
+      const newLead = {
+        id: Date.now(),
+        name: name,
+        phone: phone,
+        course: course,
+        branch: branch,
+        status: 'Pending'
+      };
+
+      leadsData.unshift(newLead);
+      renderLeadsTable();
+      if (typeof ttiCreateLead === 'function') ttiCreateLead(newLead);
+
+      // Update Counter
+      const countBadge = document.getElementById('leadCountBadge');
+      if(countBadge) countBadge.innerText = leadsData.length;
+
+      const statInq = document.getElementById('statNewInquiries');
+      if(statInq) statInq.innerText = parseInt(statInq.innerText) + 1;
+
+      alert(`Thank you ${name}! Your enrollment request for ${course} at our ${branch} branch has been received. We will contact you at ${phone} shortly.`);
+      
+      document.getElementById('publicEnrollForm').reset();
+      closeEnrollmentModal();
+
+      // Continue straight to TeleBirr / CBE fee payment for the new applicant
+      setTimeout(function() {
+        if (typeof openPaymentModal === 'function') {
+          openPaymentModal(null, false, name, course);
+        }
+      }, 400);
+    }
+
+    // ================= ADMIN DASHBOARD TABS & MANAGEMENT ================= //
+
+    function switchAdminTab(tabId) {
+      // Hide all panels
+      const panels = document.querySelectorAll('.admin-panel');
+      panels.forEach(p => p.classList.add('hidden'));
+
+      // Deactivate all nav buttons
+      const navs = document.querySelectorAll('.admin-nav-item');
+      navs.forEach(n => {
+        n.classList.remove('bg-brand-500/20', 'border-brand-500/40', 'text-white');
+        n.classList.add('text-slate-400', 'border-transparent');
+      });
+
+      // Activate selected
+      document.getElementById(`panel-${tabId}`).classList.remove('hidden');
+      const activeNav = document.getElementById(`tab-${tabId}`);
+      activeNav.classList.add('bg-brand-500/20', 'border-brand-500/40', 'text-white');
+      activeNav.classList.remove('text-slate-400', 'border-transparent');
+
+      // Let the auth module lazy-load admin panels (messages / settings).
+      if (typeof TTIAdminTabHook === 'function') TTIAdminTabHook(tabId);
+    }
+
+    function renderAdminCourseTable() {
+      const tbody = document.getElementById('adminCourseTableBody');
+      tbody.innerHTML = '';
+
+      courseCategories.forEach(c => {
+        const row = `
+          <tr class="hover:bg-slate-800/50">
+            <td class="p-4 font-bold text-white flex items-center gap-2">
+              <i data-lucide="${c.icon || 'book'}" class="w-4 h-4 text-brand-400"></i> ${c.title}
+            </td>
+            <td class="p-4 text-slate-300">${c.tools.join(', ')}</td>
+            <td class="p-4"><span class="bg-emerald-500/10 text-emerald-400 font-bold px-2 py-0.5 rounded text-[10px]">Active</span></td>
+            <td class="p-4 text-right">
+              <button onclick="alert('Editing ${c.title} parameters...')" class="text-brand-400 hover:underline text-xs font-semibold">Edit</button>
+            </td>
+          </tr>
+        `;
+        tbody.insertAdjacentHTML('beforeend', row);
+      });
+      lucide.createIcons();
+    }
+
+    function renderLeadsTable(filteredBranch = 'ALL') {
+      const tbody = document.getElementById('leadsTableBody');
+      tbody.innerHTML = '';
+
+      const items = filteredBranch === 'ALL' ? leadsData : leadsData.filter(l => l.branch === filteredBranch);
+
+      items.forEach(lead => {
+        let statusBadge = 'bg-amber-500/10 text-amber-400';
+        if(lead.status === 'Contacted') statusBadge = 'bg-blue-500/10 text-blue-400';
+        if(lead.status === 'Enrolled') statusBadge = 'bg-emerald-500/10 text-emerald-400';
+
+        const row = `
+          <tr class="hover:bg-slate-800/50">
+            <td class="p-4 font-bold text-white">${lead.name}</td>
+            <td class="p-4 font-mono text-slate-300">${lead.phone}</td>
+            <td class="p-4 text-slate-300">${lead.course}</td>
+            <td class="p-4"><span class="bg-slate-800 px-2 py-1 rounded text-slate-300 text-[11px]">${lead.branch}</span></td>
+            <td class="p-4"><span class="${statusBadge} font-bold px-2 py-0.5 rounded text-[10px]">${lead.status}</span></td>
+            <td class="p-4 text-right">
+              <button onclick="updateLeadStatus(${lead.id})" class="bg-slate-800 hover:bg-brand-500 hover:text-navy-950 text-slate-200 px-2.5 py-1 rounded text-[10px] font-bold transition">
+                Next Status
+              </button>
+              ${lead.status === 'Enrolled' ? `<button onclick="openPaymentModal(null, false, '${lead.name.replace(/'/g, "\\u0027")}', '${lead.course.replace(/'/g, "\\u0027")}')" class="bg-emerald-600/80 hover:bg-emerald-500 text-white px-2.5 py-1 rounded text-[10px] font-bold transition ml-1">Pay</button>` : ''}
+            </td>
+          </tr>
+        `;
+        tbody.insertAdjacentHTML('beforeend', row);
+      });
+    }
+
+    function filterLeadsTable() {
+      const branch = document.getElementById('branchLeadFilter').value;
+      renderLeadsTable(branch);
+    }
+
+    function updateLeadStatus(id) {
+      const lead = leadsData.find(l => l.id === id);
+      if(lead) {
+        if(lead.status === 'Pending') lead.status = 'Contacted';
+        else if(lead.status === 'Contacted') lead.status = 'Enrolled';
+        else lead.status = 'Pending';
+        renderLeadsTable();
+        if (typeof ttiPersistLeadStatus === 'function') ttiPersistLeadStatus(id, lead.status);
+        if (typeof ttiPopulateStudentPickers === 'function') ttiPopulateStudentPickers();
+      }
+    }
+
+    function openAddCourseModal() {
+      const title = prompt("Enter New Discipline Title:");
+      if(title) {
+        courseCategories.push({
+          id: title.toLowerCase().replace(/\s+/g, '-'),
+          title: title,
+          desc: 'Newly added practical curriculum stream at Top Training Institute.',
+          tools: ['Module 1 Basics', 'Practical Capstone'],
+          extraCount: 1,
+          icon: 'layers'
+        });
+        renderCourseCatalog(courseCategories);
+        renderAdminCourseTable();
+        alert(`New discipline "${title}" created successfully!`);
+      }
+    }
+
+    // ================= CERTIFICATE ISSUANCE ================= //
+
+    function generateCertificatePreview() {
+      const name = document.getElementById('certStudentName').value || 'Abebe Bikila';
+      const course = document.getElementById('certCourseName').value || 'Full-Stack Website Development';
+
+      document.getElementById('certOutputName').innerText = name;
+      document.getElementById('certOutputCourse').innerText = course;
+
+      // Auto-fill issue date and a unique verifiable ID
+      const now = new Date();
+      const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      document.getElementById('certOutputDate').innerText = `${months[now.getMonth()]} ${now.getFullYear()}`;
+      document.getElementById('certOutputId').innerText = 'TTI-' + now.getFullYear() + '-' + Math.floor(1000 + Math.random() * 9000);
+
+      document.getElementById('certPreviewCard').classList.remove('hidden');
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+    }
+  </script>
+
+  <!-- Payment (TeleBirr / CBE), Theory Progress & Certificate Print Logic -->
+  <script src="js/app.js"></script>
+  <!-- Login / Registration, Messaging & Settings -->
+  <script src="js/auth.js"></script>
+</body>
+</html>

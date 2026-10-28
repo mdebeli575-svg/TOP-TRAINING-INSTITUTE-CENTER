@@ -1,0 +1,17 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Node (if server.js tooling is ever installed)
+node_modules/
+
+# Local overrides & backups
+*.local
+*.bak
+*-backup.php
+*-copy.php
+
+# Logs
+*.log

@@ -1,0 +1,79 @@
+# ============================================================
+# TOP TRAINING INSTITUTE - Portal Configuration (YAML)
+# Mirrors config/config.json. Used by backend services / CI
+# to read gateway + certificate settings without JSON parsing.
+# ============================================================
+
+institution:
+  name: TOP TRAINING INSTITUTE
+  tagline: Learn Skills. Build Your Career. Create Your Future.
+  emails:
+    - toptrainings2020@gmail.com
+    - mesgebudebeli97@gmail.com
+  hotlines:
+    - "0991929303"
+    - "0991929304"
+    - "0991926707"
+  branches:
+    - id: Megenagna
+      label: "#1 Megenagna"
+      address_am: "መገናኛ - መተባበር ህንፃ 2ኛ ፎቅ 14"
+      phone: "0991929303"
+    - id: Mexico
+      label: "#2 Mexico"
+      address_am: "ሜክሲኮ - ኬኬር ህንፃ 3ኛ ፎቅ 319"
+      phone: "0991929304"
+    - id: "Jemo 1"
+      label: "#3 Jemo 1"
+      address_am: "ጀሞ 1 - ካኩ ቢዝነስ ሴንተር 3ኛ ፎቅ"
+      phone: "0991926707"
+
+currency: ETB
+
+fees:
+  registration_fee: 500
+  certificate_print_fee: 200
+
+payment_methods:
+  telebirr:
+    enabled: true
+    provider: TeleBirr (Ethio Telecom)
+    shortcode: "*844#"
+    paybill: "84400"
+    merchant: "77100"
+    flow: push_ussd_request
+    validation:
+      phone_pattern: "^0[97][0-9]{8}$"
+    callback_endpoint: https://payments.example.com/telebirr/callback
+  cbe:
+    enabled: true
+    provider: Commercial Bank of Ethiopia
+    account_number: "1000448547519"
+    account_name: TOP TRAINING INSTITUTE
+    bank_code: "13"
+    flow: manual_transfer_reference
+    requires_trx_reference: true
+
+certificate:
+  prefix: TTI
+  signature_title: Academic Director
+  issue_requirements:
+    theory_classes_finished: true
+    fees_verified: true
+  paper:
+    size: A4
+    orientation: landscape
+
+theory_modules_default:
+  - Course Orientation & Fundamentals
+  - Core Theory Modules
+  - Practical Lab Sessions
+  - Capstone Project & Defense
+
+storage:
+  client_keys:
+    payments: tti_payments_v1
+    theory: tti_theory_v1
+  backend_note: >
+    Client uses localStorage for the demo. Swap ttiLoad/ttiSave in js/app.js
+    for REST calls to /api/payments and /api/theory when a server is connected.

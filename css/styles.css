@@ -1,0 +1,74 @@
+/* ============================================================
+   TOP TRAINING INSTITUTE - Payment & Certificate Add-on Styles
+   Complements Tailwind utility classes used in index.html
+   ============================================================ */
+
+/* ---------- Payment method buttons (modal) ---------- */
+.pay-method-btn {
+  cursor: pointer;
+}
+.pay-method-btn:hover {
+  filter: brightness(1.15);
+}
+
+/* ---------- Student portal theory module rows ---------- */
+.theory-module-row {
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.theory-module-row:hover {
+  border-color: rgba(245, 158, 11, 0.4);
+}
+.theory-module-row.theory-done {
+  background: rgba(16, 185, 129, 0.07);
+  border-color: rgba(16, 185, 129, 0.35);
+}
+
+/* ---------- Certificate paper look ---------- */
+#certPreviewCard {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.55);
+}
+
+/* ============================================================
+   PRINT STYLES
+   Only the certificate is printed. Every other element on the
+   page is hidden by moving the certificate into #print-root,
+   which is the sole visible container while printing.
+   ============================================================ */
+#print-root {
+  display: none;
+}
+
+@media print {
+  /* Reset page chrome */
+  @page {
+    size: A4 landscape;
+    margin: 12mm;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  /* Hide everything outside the print root */
+  body > *:not(#print-root) {
+    display: none !important;
+  }
+
+  /* Show only the certificate */
+  #print-root {
+    display: block !important;
+  }
+  #print-root #certPreviewCard {
+    display: block !important;
+    background: #ffffff !important;
+    border: 4px solid #d97706 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
