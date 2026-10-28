@@ -31,7 +31,7 @@ var TTI_PRINT_BACK = null;     // restore node after printing
 // read synchronously. ttiBootstrap() fills it from the server when the PHP
 // API is reachable and gracefully falls back to localStorage otherwise, so the
 // static/node preview keeps working with no backend.
-var TTI_API = 'api/';
+var TTI_API = '/api/';
 var TTI_REMOTE = false;
 var TTI_STATE = { payments: [], theory: {} };
 

@@ -9,7 +9,7 @@
    gracefully when the PHP API is unavailable.
    ============================================================ */
 
-var TTI_AUTH_API = 'api/';
+var TTI_AUTH_API = '/api/';
 var TTI_AUTH = { user: null, ready: false, online: false, pendingAdmin: false, adminThreadUid: null, pendingIntent: null, pendingResume: null };
 
 // ---------- tiny helpers ----------
