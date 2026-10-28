@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "description": "TOP Training Institute portal - static frontend + Node/Vercel serverless API (TiDB Serverless).",
+  "scripts": {
+    "check": "node scripts/make-stage.cjs",
+    "deploy": "node scripts/make-stage.cjs && vercel _deploy_stage --prod --yes"
+  },
   "engines": {
     "node": "22.x"
   },
