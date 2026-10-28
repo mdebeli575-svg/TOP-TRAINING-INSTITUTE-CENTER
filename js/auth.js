@@ -29,7 +29,7 @@ function ttiApi(ep, opts) {
     opts.headers = Object.assign({ 'Content-Type': 'application/json' }, opts.headers || {});
     opts.body = JSON.stringify(opts.body);
   }
-  return fetch(TTI_AUTH_API + ep, opts).then(function (r) {
+  return fetch(TTI_AUTH_API + String(ep).replace(/\.php(?=$|\?)/, ''), opts).then(function (r) {
     // Read as text first so we can give a helpful message when the response
     // isn't JSON (e.g. raw PHP source or an Apache/PHP error page).
     return r.text().then(function (txt) {
@@ -47,6 +47,9 @@ function ttiApi(ep, opts) {
 // path), so api/*.php is served as plain text instead of being executed.
 function ttiBadResponseMsg(txt, status) {
   var body = String(txt || '');
+  if (status === 405) {
+    return 'The server rejected the login/register POST (HTTP 405). This happens when the page is opened through the IDE preview panel or a proxy that only forwards GET. Open the site directly in Chrome/Edge at http://localhost/TOP-TRAINING-INSTITUTE-CENTER/ and press Ctrl+F5.';
+  }
   if (/^\s*<\?php/i.test(body) || /TtiApi|__DIR__|\brequire\b.*auth\.php/i.test(body)) {
     return 'PHP is not running for this page \u2014 the API file was returned as text. Open the site through Apache at http://localhost/TOP-TRAINING-INSTITUTE-CENTER/ (not the node preview on :8123 or a file:// path).';
   }

@@ -7,6 +7,12 @@ Thumbs.db
 # Node (if server.js tooling is ever installed)
 node_modules/
 
+# Environment secrets (Vercel / TiDB)
+.env
+.env.local
+.env.*.local
+.vercel/
+
 # Local overrides & backups
 *.local
 *.bak
@@ -15,3 +21,9 @@ node_modules/
 
 # Logs
 *.log
+
+# Local verification screenshots (transient, safe to delete)
+screenshot_verify_*.png
+_devserver.js
+_verify.js
+_smoketest.js

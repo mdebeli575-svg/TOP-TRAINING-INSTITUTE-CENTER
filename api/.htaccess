@@ -1,0 +1,11 @@
+# Apache (XAMPP) compatibility: the frontend now calls extensionless API
+# routes (e.g. /api/auth) so the same code works on Vercel serverless
+# functions. On Apache these rewrites map each route back to its .php file.
+# Vercel ignores this file.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # Only rewrite real route names, never files that already exist.
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^([a-zA-Z0-9_-]+)/?$ $1.php [QSA,L]
+</IfModule>

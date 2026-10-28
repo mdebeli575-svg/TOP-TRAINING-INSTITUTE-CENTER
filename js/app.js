@@ -50,7 +50,7 @@ function ttiHydrateFromLocal() {
 // POST JSON to an API endpoint. Resolves {ok:true, local:true} offline.
 function ttiPost(endpoint, payload) {
   if (!TTI_REMOTE) return Promise.resolve({ ok: true, local: true });
-  return fetch(TTI_API + endpoint, {
+  return fetch(TTI_API + String(endpoint).replace(/\.php(?=$|\?)/, ''), {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)
@@ -61,7 +61,7 @@ function ttiPost(endpoint, payload) {
 
 // Load all state from the server; enables remote mode only on success.
 function ttiBootstrap() {
-  fetch(TTI_API + 'bootstrap.php', { headers: { 'Accept': 'application/json' } })
+  fetch(TTI_API + 'bootstrap', { headers: { 'Accept': 'application/json' } })
     .then(function (r) { if (!r.ok) throw new Error('http ' + r.status); return r.json(); })
     .then(function (d) {
       if (!d || !d.server) throw new Error('no server');
