@@ -27,3 +27,9 @@ screenshot_verify_*.png
 _devserver.js
 _verify.js
 _smoketest.js
+
+# Vercel deploy staging / skill scratch dirs
+_deploy_stage/
+_minimal/
+.vercel-tmp/
+.vercel

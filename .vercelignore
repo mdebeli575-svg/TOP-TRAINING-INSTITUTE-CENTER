@@ -1,0 +1,8 @@
+# Files excluded from Vercel deployments (gitignore-style patterns).
+# The legacy PHP API is kept in the repo only for the local XAMPP workflow;
+# Vercel cannot run PHP and its presence breaks the serverless build.
+*.php
+api/lib/
+api/.htaccess
+database/
+.vercel-tmp/
