@@ -1,4 +1,4 @@
-/* ============================================================
+/* ==============================================================
    TOP TRAINING INSTITUTE - Accounts, Messaging & Settings
    Session-based auth against the PHP API in /api.
    - Admin login is the bootstrapped account in api/config.php.
@@ -9,7 +9,7 @@
    gracefully when the PHP API is unavailable.
    ============================================================ */
 
-var TTI_AUTH_API = '/api/';
+var TTI_AUTH_API = 'api/';
 var TTI_AUTH = { user: null, ready: false, online: false, pendingAdmin: false, adminThreadUid: null, pendingIntent: null, pendingResume: null };
 
 // ---------- tiny helpers ----------
@@ -79,6 +79,7 @@ function ttiShort(dt) { return (dt || '').toString().slice(0, 16); }
 // ============================================================
 function TTIAuthInit() {
   ttiPopulateRegCourses();
+  ttiRenderViewEntry();
   // No server -> no auth (static / node preview). Hide auth affordances.
   ttiApi('auth.php?action=me')
     .then(function (d) {
@@ -86,8 +87,9 @@ function TTIAuthInit() {
       TTI_AUTH.user = (d && d.ok) ? d.user : null;
       TTI_AUTH.online = !!(d && d.ok);
       ttiRenderAuthNav();
+      ttiRenderViewEntry();
     })
-    .catch(function () { TTI_AUTH.online = false; ttiRenderAuthNav(); });
+    .catch(function () { TTI_AUTH.online = false; ttiRenderAuthNav(); ttiRenderViewEntry(); });
 }
 
 function ttiPopulateRegCourses() {
@@ -154,6 +156,8 @@ function closeAuthModal() { document.getElementById('authModal').classList.add('
 
 function switchAuthTab(tab) {
   var login = tab === 'login';
+  var bar = document.getElementById('authTabBar'); if (bar) bar.classList.remove('hidden');
+  var forgot = document.getElementById('authForgotForm'); if (forgot) forgot.classList.add('hidden');
   document.getElementById('authLoginForm').classList.toggle('hidden', !login);
   document.getElementById('authRegisterForm').classList.toggle('hidden', login);
   var lt = document.getElementById('authTabLogin'), rt = document.getElementById('authTabRegister');
@@ -166,6 +170,38 @@ function ttiAuthError(msg) {
   if (!e) return;
   e.innerText = msg || '';
   e.classList.toggle('hidden', !msg);
+}
+
+// ---- Forgot password (admin-reset flow) ----
+function TTIShowForgot() {
+  var bar = document.getElementById('authTabBar'); if (bar) bar.classList.add('hidden');
+  document.getElementById('authLoginForm').classList.add('hidden');
+  document.getElementById('authRegisterForm').classList.add('hidden');
+  var f = document.getElementById('authForgotForm'); if (f) f.classList.remove('hidden');
+  ttiAuthError('');
+  var m = document.getElementById('authForgotMsg'); if (m) { m.innerText = ''; m.className = 'text-xs font-semibold text-center'; }
+  var hint = document.getElementById('authHint'); if (hint) hint.innerText = 'Reset your password';
+  ttiAuthIcons();
+}
+function TTIShowLogin() {
+  var hint = document.getElementById('authHint'); if (hint) hint.innerText = 'Sign in or create a student / user account.';
+  switchAuthTab('login');
+}
+function TTIForgotPassword(ev) {
+  ev.preventDefault();
+  var email = (document.getElementById('forgotEmail').value || '').trim();
+  var m = document.getElementById('authForgotMsg');
+  function say(txt, cls) { if (m) { m.innerText = txt; m.className = 'text-xs font-semibold text-center ' + cls; } }
+  if (!email) { say('Enter your registered email.', 'text-red-400'); return false; }
+  say('Sending...', 'text-slate-400');
+  ttiApi('auth.php', { body: { action: 'forgot_password', email: email } })
+    .then(function (d) {
+      if (!d.ok) { say(d.error || 'Failed to send request.', 'text-red-400'); return; }
+      say(d.message || 'Request sent to the administrator.', 'text-emerald-400');
+      document.getElementById('forgotEmail').value = '';
+    })
+    .catch(function () { say(ttiNetErrMsg(), 'text-red-400'); });
+  return false;
 }
 
 function TTILogin(ev) {
@@ -207,6 +243,7 @@ function TTIRegister(ev) {
       TTI_AUTH.user = d.user;
       closeAuthModal();
       ttiRenderAuthNav();
+      ttiRenderViewEntry();
       if (TTI_AUTH.pendingResume) { ttiResumeAfterAuth(); }
       else { openAccountModal(); }
     })
@@ -223,37 +260,66 @@ function TTILogout() {
   });
 }
 
-// If an admin was trying to reach the dashboard, complete the switch.
+// After a successful login: administrators land on the dashboard,
+// everyone else just gets the refreshed top-bar control.
 function ttiAfterAuthSuccess() {
-  if (TTI_AUTH.pendingAdmin && TTI_AUTH.user && TTI_AUTH.user.role === 'admin') {
-    TTI_AUTH.pendingAdmin = false;
+  if (TTI_AUTH.user && TTI_AUTH.user.role === 'admin') {
     ttiEnterAdminView();
+  } else {
+    ttiRenderViewEntry();
   }
+}
+
+// Is the admin dashboard currently the visible view?
+function ttiInAdminView() {
+  var admin = document.getElementById('adminDashboardView');
+  return !!admin && !admin.classList.contains('hidden');
 }
 
 function ttiEnterAdminView() {
   var pub = document.getElementById('publicView');
   var admin = document.getElementById('adminDashboardView');
-  var txt = document.getElementById('viewToggleText');
   var nav = document.getElementById('publicNav');
   var cta = document.getElementById('publicNavCta');
   if (pub) pub.classList.add('hidden');
   if (admin) admin.classList.remove('hidden');
-  if (txt) txt.innerText = 'Switch to Public Website';
   if (nav) nav.classList.add('hidden');
   if (cta) cta.classList.add('hidden');
   window.scrollTo({ top: 0, behavior: 'smooth' });
+  ttiRenderViewEntry();
 }
 
-// Called from toggleSystemMode() before revealing the admin dashboard.
-// Returns true to allow access, or false (and opens login) to block.
-function TTIAuthRequireAdmin() {
-  if (!TTI_AUTH.online) return true; // static preview: don't lock the demo
-  if (TTI_AUTH.user && TTI_AUTH.user.role === 'admin') return true;
-  TTI_AUTH.pendingAdmin = true;
+function ttiExitAdminView() {
+  if (typeof showPublicView === 'function') showPublicView();
+  ttiRenderViewEntry();
+}
+
+// Renders the single top-bar control that replaced the old "Switch to Admin
+// Dashboard" button: a Login button for visitors, a dashboard toggle for admins.
+function ttiRenderViewEntry() {
+  var area = document.getElementById('viewEntryArea');
+  if (!area) return;
+  var u = TTI_AUTH.user;
+  var btn = 'inline-flex items-center gap-2 font-bold px-3.5 py-1.5 rounded-full text-xs transition-all active:scale-95';
+  if (u && u.role === 'admin') {
+    area.innerHTML = ttiInAdminView()
+      ? '<button onclick="ttiExitAdminView()" class="' + btn + ' border border-slate-600 text-slate-200 hover:text-white hover:border-brand-500"><i data-lucide="globe" class="w-3.5 h-3.5"></i> Public Website</button>'
+      : '<button onclick="ttiEnterAdminView()" class="' + btn + ' bg-brand-500 hover:bg-brand-600 text-navy-950 shadow-md shadow-brand-500/20"><i data-lucide="layout-dashboard" class="w-3.5 h-3.5"></i> Admin Dashboard</button>';
+  } else if (u) {
+    // Signed in as student/user: the nav already shows Account + Logout.
+    area.innerHTML = '';
+  } else {
+    area.innerHTML = '<button onclick="TTIViewEntryClick()" class="' + btn + ' bg-brand-500 hover:bg-brand-600 text-navy-950 shadow-md shadow-brand-500/20"><i data-lucide="log-in" class="w-3.5 h-3.5"></i> Login</button>';
+  }
+  ttiAuthIcons();
+}
+
+// Top-bar Login button: opens the login modal (an admin sign-in lands on the
+// dashboard via ttiAfterAuthSuccess).
+function TTIViewEntryClick() {
   openAuthModal('login');
-  document.getElementById('authHint').innerText = 'Administrator access — sign in with the admin account.';
-  return false;
+  var hint = document.getElementById('authHint');
+  if (hint) hint.innerText = 'Sign in to continue \u2014 administrators are taken to the dashboard.';
 }
 
 // Gate a student-facing action (Pay Fees, Student Portal, classes,
@@ -284,7 +350,7 @@ function ttiResumeAfterAuth() {
 }
 
 // ============================================================
-// ACCOUNT MODAL (student / user): messages + settings
+// ACCOUNT MODAL (student / user): messages call :this number:+251910695378 + settings
 // ============================================================
 function openAccountModal() {
   var u = TTI_AUTH.user;
@@ -399,6 +465,7 @@ function TTIAdminTabHook(tabId) {
   if (!TTI_AUTH.online) return;
   if (tabId === 'messages') TTILoadAdminInbox();
   if (tabId === 'settings') TTILoadSiteSettings();
+  if (tabId === 'resets') TTILoadResetRequests();
 }
 
 function TTILoadAdminInbox() {
@@ -462,6 +529,62 @@ function TTISendAdminReply() {
   if (!body || !TTI_AUTH.adminThreadUid) return;
   ttiApi('messages.php', { body: { action: 'send', user_id: TTI_AUTH.adminThreadUid, body: body } })
     .then(function (d) { if (d.ok) TTIOpenAdminThread(TTI_AUTH.adminThreadUid); });
+}
+
+// ---- Password reset desk (admin) ----
+function TTILoadResetRequests() {
+  var list = document.getElementById('adminResetList');
+  if (!list) return;
+  list.innerHTML = '<p class="p-6 text-center text-slate-500 text-xs">Loading requests...</p>';
+  ttiApi('auth.php?action=reset_requests')
+    .then(function (d) {
+      if (!d.ok) { list.innerHTML = '<p class="p-6 text-center text-red-400 text-xs">' + ttiEsc(d.error || 'Failed to load.') + '</p>'; return; }
+      var badge = document.getElementById('adminResetBadge');
+      if (badge) { badge.innerText = d.count; badge.classList.toggle('hidden', !d.count); }
+      var rows = d.requests || [];
+      if (!rows.length) { list.innerHTML = '<p class="p-6 text-center text-slate-500 text-xs">No pending reset requests.</p>'; return; }
+      list.innerHTML = rows.map(function (r) {
+        var who = r.full_name
+          ? ttiEsc(r.full_name) + ' <span class="text-slate-500">(' + ttiEsc(r.role) + ')</span>'
+          : '<span class="text-amber-400">No matching account</span>';
+        var canReset = !!r.user_id && r.role !== 'admin';
+        var out = '<div class="bg-navy-900 rounded-2xl border border-slate-800 p-4 flex flex-col sm:flex-row sm:items-center gap-3">'
+          + '<div class="flex-1">'
+            + '<p class="text-sm font-bold text-white">' + who + '</p>'
+            + '<p class="text-[11px] text-slate-400">' + ttiEsc(r.email) + (r.phone ? ' · ' + ttiEsc(r.phone) : '') + '</p>'
+            + '<p class="text-[11px] text-slate-500">Requested ' + ttiShort(r.created_at) + '</p>'
+          + '</div>';
+        if (canReset) {
+          out += '<div class="flex items-center gap-2">'
+            + '<input id="resetpw_' + r.user_id + '" type="text" class="bg-navy-950 border border-slate-700 rounded-lg p-2 text-xs text-white w-40" placeholder="New password (min 6)">'
+            + '<button onclick="TTIAdminResetPassword(' + r.user_id + ')" class="bg-brand-500 hover:bg-brand-600 text-navy-950 font-bold text-xs px-3 py-2 rounded-lg">Reset</button>'
+            + '<button onclick="TTIDismissReset(' + r.id + ')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs px-3 py-2 rounded-lg">Dismiss</button>'
+          + '</div>';
+        } else {
+          out += '<button onclick="TTIDismissReset(' + r.id + ')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs px-3 py-2 rounded-lg self-start">Dismiss</button>';
+        }
+        return out + '</div>';
+      }).join('');
+    })
+    .catch(function () { list.innerHTML = '<p class="p-6 text-center text-red-400 text-xs">Cannot reach server.</p>'; });
+}
+
+function TTIAdminResetPassword(uid) {
+  var inp = document.getElementById('resetpw_' + uid);
+  var pw = inp ? (inp.value || '').trim() : '';
+  if (pw.length < 6) { alert('Enter a new password of at least 6 characters.'); return; }
+  ttiApi('auth.php', { body: { action: 'admin_reset_password', user_id: uid, new_password: pw } })
+    .then(function (d) {
+      if (!d.ok) { alert(d.error || 'Failed to reset.'); return; }
+      TTILoadResetRequests();
+    })
+    .catch(function () { alert('Cannot reach server.'); });
+}
+
+function TTIDismissReset(rid) {
+  ttiApi('auth.php', { body: { action: 'dismiss_reset', request_id: rid } })
+    .then(function () { TTILoadResetRequests(); })
+    .catch(function () { alert('Cannot reach server.'); });
 }
 
 function TTILoadSiteSettings() {

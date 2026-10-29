@@ -91,3 +91,21 @@ CREATE TABLE IF NOT EXISTS `settings` (
     `v` VARCHAR(255) NOT NULL DEFAULT '',
     PRIMARY KEY (`k`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Password recovery requests. Because no mail server is configured, a
+-- "Forgot password?" submission files a request here for the administrator to
+-- fulfil manually from the dashboard (set a new password / dismiss). `user_id`
+-- is NULL only if the email matched no account at submit time.
+CREATE TABLE IF NOT EXISTS `password_resets` (
+    `id`         INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `user_id`    INT UNSIGNED NULL,
+    `email`      VARCHAR(190) NOT NULL,
+    `status`     ENUM('pending','done') NOT NULL DEFAULT 'pending',
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `resolved_at` TIMESTAMP NULL DEFAULT NULL,
+    PRIMARY KEY (`id`),
+    KEY `idx_pwresets_status` (`status`),
+    KEY `idx_pwresets_user` (`user_id`),
+    CONSTRAINT `fk_pwresets_user` FOREIGN KEY (`user_id`)
+        REFERENCES `users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
